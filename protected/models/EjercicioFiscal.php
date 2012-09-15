@@ -46,10 +46,10 @@ class EjercicioFiscal extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('nombre, fechaInicio_dt, estatus_did', 'required'),
-array('estatus_did', 'numerical', 'integerOnly'=>true),
-array('nombre', 'length', 'max'=>145),
-array('fechaFin_dt', 'safe'),
+			array('nombre, fechaInicio_dt, estatus_did', 'required'),
+			array('estatus_did', 'numerical', 'integerOnly'=>true),
+			array('nombre', 'length', 'max'=>145),
+			array('fechaFin_dt', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, nombre, fechaInicio_dt, fechaFin_dt, estatus_did', 'safe', 'on'=>'search'),
@@ -86,33 +86,7 @@ array('fechaFin_dt', 'safe'),
 	}
 	
 	
-	/**
-	*
-	*/
-	public function attributeIsDirectRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr && $relacion[0]==self::BELONGS_TO)
-				return true;
-		
-		return false;
-	
-	}
-	
-	/**
-	*
-	**/
-	public function attributeDatatypeRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr)
-				return $relacion[1];
-		
-		return null;
-	}
-	
+
 	
 	/**
 	* elimina en cascada

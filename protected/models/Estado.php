@@ -40,10 +40,10 @@ class Estado extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('clave, nombre, estatus_did', 'required'),
-array('estatus_did', 'numerical', 'integerOnly'=>true),
-array('clave', 'length', 'max'=>45),
-array('nombre', 'length', 'max'=>145),
+			array('clave, nombre, estatus_did', 'required'),
+			array('estatus_did', 'numerical', 'integerOnly'=>true),
+			array('clave', 'length', 'max'=>45),
+			array('nombre', 'length', 'max'=>145),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, clave, nombre, estatus_did', 'safe', 'on'=>'search'),
@@ -72,34 +72,6 @@ array('nombre', 'length', 'max'=>145),
 			'estatus' => array(self::BELONGS_TO, 'Estatus', 'estatus_did'),
 			'municipios' => array(self::HAS_MANY, 'Municipio', 'estado_did'),
 		);
-	}
-	
-	
-	/**
-	*
-	*/
-	public function attributeIsDirectRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr && $relacion[0]==self::BELONGS_TO)
-				return true;
-		
-		return false;
-	
-	}
-	
-	/**
-	*
-	**/
-	public function attributeDatatypeRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr)
-				return $relacion[1];
-		
-		return null;
 	}
 	
 	

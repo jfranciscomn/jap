@@ -35,7 +35,33 @@ foreach($this->tableSchema->columns as $column)
 
 <?php
 }
+
+$modelo = new $this->modelClass;
+$stack = array();
+foreach($modelo->linkedRelations() as $key=>$value)
+{
+	$stack[] = $value;
+	while(isset($value['linked']))
+	{
+		$stack[]=$value['linked'];
+		$value=$value['linked'];
+	}
+}
+
+foreach($stack as $value)
+{
 ?>
+
+	<div class="<?php echo "<?php echo \$form->fieldClass(\$model, '{$value['attribute']}'); ?>"; ?>">
+		<?php echo "<?php echo ".$this->generateActiveLabel($this->modelClass,$value['attribute'])."; ?>\n"; ?>
+		<div class="input">
+			
+			<?php echo "<?php echo ".$this->generateActiveField($this->modelClass,$value['attribute'])."; ?>\n"; ?>
+			<?php echo "<?php echo \$form->error(\$model,'{$value['attribute']}'); ?>\n"; ?>
+		</div>
+	</div>
+
+<?php } ?>
 	<div class="actions">
 		<?php echo "<?php echo BHtml::submitButton(\$model->isNewRecord ? 'Crear' : 'Guardar'); ?>\n"; ?>
 	</div>

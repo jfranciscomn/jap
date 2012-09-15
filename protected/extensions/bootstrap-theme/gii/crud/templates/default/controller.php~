@@ -4,7 +4,7 @@
  * The following variables are available in this template:
  * - $this: the CrudCode object
  */
- 	$stringkey=$this->module->modules['gii']['custom']['StringKey'];
+ 	$stringkey=Yii::app()->modules['gii']['custom']['StringKey'];
 ?>
 <?php echo "<?php\n"; ?>
 

@@ -7,19 +7,20 @@
 ?>
 <?php
 echo "<?php\n";
-$label=$this->class2name($this->modelClass);
-echo "\$this->pageCaption='Administrar $label';
+//$label=$this->class2name($this->modelClass);
+$label="$this->modelClass::classNameLabel()";
+echo "\$this->pageCaption='Administrar '.$label;
 \$this->pageTitle=Yii::app()->name . ' - ' . \$this->pageCaption;
-\$this->pageDescription='Administrar ".strtolower($label)."';
+\$this->pageDescription='Administrar '.$label;
 \$this->breadcrumbs=array(
-	'$label'=>array('index'),
+	$label=>array('index'),
 	'Administrar',
 );\n";
 ?>
 
 $this->menu=array(
-	array('label'=>'Listar <?php echo $label; ?>', 'url'=>array('index')),
-	array('label'=>'Crear <?php echo $this->modelClass; ?>', 'url'=>array('create')),
+	array('label'=>'Listar '.<?php echo $label; ?>, 'url'=>array('index')),
+	array('label'=>'Crear '.<?php echo  $label; ?>, 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -55,7 +56,7 @@ $('.search-form form').submit(function(){
 	'columns'=>array(
 <?php
 $count=0;
-$modelo= new $this->_modelClass;
+$modelo= new $this->modelClass;
 foreach($this->tableSchema->columns as $column)
 {
 	if(++$count==7)

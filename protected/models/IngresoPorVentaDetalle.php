@@ -1,21 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "AreaGeografica".
+ * This is the model class for table "IngresoPorVentaDetalle".
  *
- * The followings are the available columns in table 'AreaGeografica':
+ * The followings are the available columns in table 'IngresoPorVentaDetalle':
  * @property integer $id
- * @property string $nombre
+ * @property string $concepto
+ * @property double $cantidad
+ * @property integer $ingresoPorVenta_aid
  * @property integer $estatus_did
  *
  * The followings are the available model relations:
- * @property Institucion[] $institucions
+ * @property IngresoPorVenta $ingresoPorVenta
+ * @property Estatus $estatus
  */
-class AreaGeografica extends CActiveRecord
+class IngresoPorVentaDetalle extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return AreaGeografica the static model class
+	 * @return IngresoPorVentaDetalle the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -27,7 +30,7 @@ class AreaGeografica extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'AreaGeografica';
+		return 'IngresoPorVentaDetalle';
 	}
 
 	/**
@@ -38,12 +41,13 @@ class AreaGeografica extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nombre, estatus_did', 'required'),
-			array('estatus_did', 'numerical', 'integerOnly'=>true),
-			array('nombre', 'length', 'max'=>145),
+		array('concepto, ingresoPorVenta_aid, estatus_did', 'required'),
+array('ingresoPorVenta_aid, estatus_did', 'numerical', 'integerOnly'=>true),
+array('cantidad', 'numerical'),
+array('concepto', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, nombre, estatus_did', 'safe', 'on'=>'search'),
+			array('id, concepto, cantidad, ingresoPorVenta_aid, estatus_did', 'safe', 'on'=>'search'),
 		);
 	}
 	
@@ -54,6 +58,7 @@ class AreaGeografica extends CActiveRecord
 		// will receive user inputs.
 		return array(
 		array('estatus_did','dropdownfield'),
+array('ingresoPorVenta_aid','autocompletefield'),
 			
 		);
 	}
@@ -66,8 +71,37 @@ class AreaGeografica extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'institucions' => array(self::HAS_MANY, 'Institucion', 'areageografica_did'),
+			'ingresoPorVenta' => array(self::BELONGS_TO, 'IngresoPorVenta', 'ingresoPorVenta_aid'),
+			'estatus' => array(self::BELONGS_TO, 'Estatus', 'estatus_did'),
 		);
+	}
+	
+	
+	/**
+	*
+	*/
+	public function attributeIsDirectRelation($attr)
+	{
+		$relations =$this->relations();
+		foreach($relations as $nombre=>$relacion)
+			if($relacion[2]===$attr && $relacion[0]==self::BELONGS_TO)
+				return true;
+		
+		return false;
+	
+	}
+	
+	/**
+	*
+	**/
+	public function attributeDatatypeRelation($attr)
+	{
+		$relations =$this->relations();
+		foreach($relations as $nombre=>$relacion)
+			if($relacion[2]===$attr)
+				return $relacion[1];
+		
+		return null;
 	}
 	
 	
@@ -76,9 +110,6 @@ class AreaGeografica extends CActiveRecord
 	**/
 	public function deleteCascade()
 	{
-		foreach ($this->$institucions as $institucionsn )
-			$institucionsn->deleteCascade();
-
 		$this->delete();
 	}
 
@@ -89,7 +120,9 @@ class AreaGeografica extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'nombre' => 'Nombre',
+			'concepto' => 'Concepto',
+			'cantidad' => 'Cantidad',
+			'ingresoPorVenta_aid' => 'Ingreso Por Venta',
 			'estatus_did' => 'Estatus',
 		);
 	}
@@ -106,7 +139,9 @@ class AreaGeografica extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('nombre',$this->nombre,true);
+		$criteria->compare('concepto',$this->concepto,true);
+		$criteria->compare('cantidad',$this->cantidad);
+		$criteria->compare('ingresoPorVenta_aid',$this->ingresoPorVenta_aid);
 		$criteria->compare('estatus_did',$this->estatus_did);
 
 		return new CActiveDataProvider($this, array(

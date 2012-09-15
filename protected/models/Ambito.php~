@@ -1,21 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "AreaGeografica".
+ * This is the model class for table "Ambito".
  *
- * The followings are the available columns in table 'AreaGeografica':
+ * The followings are the available columns in table 'Ambito':
  * @property integer $id
  * @property string $nombre
  * @property integer $estatus_did
  *
  * The followings are the available model relations:
+ * @property Estatus $estatus
  * @property Institucion[] $institucions
  */
-class AreaGeografica extends CActiveRecord
+class Ambito extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return AreaGeografica the static model class
+	 * @return Ambito the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -27,7 +28,7 @@ class AreaGeografica extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'AreaGeografica';
+		return 'Ambito';
 	}
 
 	/**
@@ -38,9 +39,9 @@ class AreaGeografica extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nombre, estatus_did', 'required'),
-			array('estatus_did', 'numerical', 'integerOnly'=>true),
-			array('nombre', 'length', 'max'=>145),
+		array('nombre, estatus_did', 'required'),
+array('estatus_did', 'numerical', 'integerOnly'=>true),
+array('nombre', 'length', 'max'=>145),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, nombre, estatus_did', 'safe', 'on'=>'search'),
@@ -66,8 +67,37 @@ class AreaGeografica extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'institucions' => array(self::HAS_MANY, 'Institucion', 'areageografica_did'),
+			'estatus' => array(self::BELONGS_TO, 'Estatus', 'estatus_did'),
+			'institucions' => array(self::HAS_MANY, 'Institucion', 'ambito_did'),
 		);
+	}
+	
+	
+	/**
+	*
+	*/
+	public function attributeIsDirectRelation($attr)
+	{
+		$relations =$this->relations();
+		foreach($relations as $nombre=>$relacion)
+			if($relacion[2]===$attr && $relacion[0]==self::BELONGS_TO)
+				return true;
+		
+		return false;
+	
+	}
+	
+	/**
+	*
+	**/
+	public function attributeDatatypeRelation($attr)
+	{
+		$relations =$this->relations();
+		foreach($relations as $nombre=>$relacion)
+			if($relacion[2]===$attr)
+				return $relacion[1];
+		
+		return null;
 	}
 	
 	

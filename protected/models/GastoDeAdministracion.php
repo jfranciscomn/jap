@@ -50,9 +50,9 @@ class GastoDeAdministracion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('institucion_aid, ejercicioFisca_did, estatus_did, editable, ultimaModificacion_dt', 'required'),
-array('institucion_aid, ejercicioFisca_did, estatus_did, editable', 'numerical', 'integerOnly'=>true),
-array('sueldos, honorarios, combustibles, luzTelefono, papeleria, impuestosDerechos, otros', 'numerical'),
+			array('institucion_aid, ejercicioFisca_did, estatus_did, editable, ultimaModificacion_dt', 'required'),
+			array('institucion_aid, ejercicioFisca_did, estatus_did, editable', 'numerical', 'integerOnly'=>true),
+			array('sueldos, honorarios, combustibles, luzTelefono, papeleria, impuestosDerechos, otros', 'numerical'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, sueldos, honorarios, combustibles, luzTelefono, papeleria, impuestosDerechos, otros, institucion_aid, ejercicioFisca_did, estatus_did, editable, ultimaModificacion_dt', 'safe', 'on'=>'search'),
@@ -65,8 +65,8 @@ array('sueldos, honorarios, combustibles, luzTelefono, papeleria, impuestosDerec
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('ejercicioFisca_did, estatus_did','dropdownfield'),
-array('institucion_aid','autocompletefield'),
+			array('ejercicioFisca_did, estatus_did','dropdownfield'),
+			array('institucion_aid','autocompletefield'),
 			
 		);
 	}
@@ -99,20 +99,6 @@ array('institucion_aid','autocompletefield'),
 		return false;
 	
 	}
-	
-	/**
-	*
-	**/
-	public function attributeDatatypeRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr)
-				return $relacion[1];
-		
-		return null;
-	}
-	
 	
 	/**
 	* elimina en cascada

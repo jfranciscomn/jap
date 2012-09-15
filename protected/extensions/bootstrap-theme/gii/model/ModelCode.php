@@ -204,7 +204,7 @@ class ModelCode extends CCodeModel
 
 	public function generateRules($table)
 	{
-		/*if(strcasecmp(substr($fkName,-3),'did')===0 &&  strcasecmp($fkName,'did'))
+		if(strcasecmp(substr($fkName,-3),'did')===0 &&  strcasecmp($fkName,'did'))
 			$relationName=rtrim(substr($fkName, 0, -3),'_');
 		else if(strcasecmp(substr($fkName,-3),'aid')===0 && strcasecmp($fkName,'aid'))
 			$relationName=rtrim(substr($fkName, 0, -3),'_');
@@ -213,7 +213,7 @@ class ModelCode extends CCodeModel
 		else if(strcasecmp(substr($fkName,-2),'f')===0 && strcasecmp($fkName,'f'))
 				$relationName=rtrim(substr($fkName, 0, -2),'_');
 		else
-			$relationName=$fkName;*/
+			$relationName=$fkName;
 			
 		$rules=array();
 		$required=array();

@@ -1,32 +1,27 @@
 <?php
 
 /**
- * This is the model class for table "IngresoPorDonativo".
+ * This is the model class for table "IngresoPorVenta".
  *
- * The followings are the available columns in table 'IngresoPorDonativo':
+ * The followings are the available columns in table 'IngresoPorVenta':
  * @property integer $id
- * @property double $personaFisica
- * @property double $personaMoral
- * @property double $fundacionesNacionales
- * @property double $fundacionesExtrajeras
- * @property double $fondosGubernamentales
- * @property double $especie
  * @property integer $institucion_aid
- * @property integer $ejercicioFiscal_did
+ * @property integer $ejercicio_did
  * @property integer $estatus_did
  * @property integer $editable
  * @property string $ultimaModificacion_dt
  *
  * The followings are the available model relations:
- * @property EjercicioFiscal $ejercicioFiscal
- * @property Estatus $estatus
+ * @property EjercicioFiscal $ejercicio
  * @property Institucion $institucion
+ * @property Estatus $estatus
+ * @property IngresoPorVentaDetalle[] $ingresoPorVentaDetalles
  */
-class IngresoPorDonativo extends CActiveRecord
+class IngresoPorVenta extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return IngresoPorDonativo the static model class
+	 * @return IngresoPorVenta the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -38,7 +33,7 @@ class IngresoPorDonativo extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'IngresoPorDonativo';
+		return 'IngresoPorVenta';
 	}
 
 	/**
@@ -49,12 +44,11 @@ class IngresoPorDonativo extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('institucion_aid, ejercicioFiscal_did, estatus_did, editable, ultimaModificacion_dt', 'required'),
-			array('institucion_aid, ejercicioFiscal_did, estatus_did, editable', 'numerical', 'integerOnly'=>true),
-			array('personaFisica, personaMoral, fundacionesNacionales, fundacionesExtrajeras, fondosGubernamentales, especie', 'numerical'),
+		array('id, institucion_aid, ejercicio_did, estatus_did, editable, ultimaModificacion_dt', 'required'),
+array('id, institucion_aid, ejercicio_did, estatus_did, editable', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, personaFisica, personaMoral, fundacionesNacionales, fundacionesExtrajeras, fondosGubernamentales, especie, institucion_aid, ejercicioFiscal_did, estatus_did, editable, ultimaModificacion_dt', 'safe', 'on'=>'search'),
+			array('id, institucion_aid, ejercicio_did, estatus_did, editable, ultimaModificacion_dt', 'safe', 'on'=>'search'),
 		);
 	}
 	
@@ -64,8 +58,8 @@ class IngresoPorDonativo extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ejercicioFiscal_did, estatus_did','dropdownfield'),
-			array('institucion_aid','autocompletefield'),
+		array('ejercicio_did, estatus_did','dropdownfield'),
+array('institucion_aid','autocompletefield'),
 			
 		);
 	}
@@ -78,17 +72,50 @@ class IngresoPorDonativo extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'ejercicioFiscal' => array(self::BELONGS_TO, 'EjercicioFiscal', 'ejercicioFiscal_did'),
-			'estatus' => array(self::BELONGS_TO, 'Estatus', 'estatus_did'),
+			'ejercicio' => array(self::BELONGS_TO, 'EjercicioFiscal', 'ejercicio_did'),
 			'institucion' => array(self::BELONGS_TO, 'Institucion', 'institucion_aid'),
+			'estatus' => array(self::BELONGS_TO, 'Estatus', 'estatus_did'),
+			'ingresoPorVentaDetalles' => array(self::HAS_MANY, 'IngresoPorVentaDetalle', 'ingresoPorVenta_aid'),
 		);
 	}
+	
+	
+	/**
+	*
+	*/
+	public function attributeIsDirectRelation($attr)
+	{
+		$relations =$this->relations();
+		foreach($relations as $nombre=>$relacion)
+			if($relacion[2]===$attr && $relacion[0]==self::BELONGS_TO)
+				return true;
+		
+		return false;
+	
+	}
+	
+	/**
+	*
+	**/
+	public function attributeDatatypeRelation($attr)
+	{
+		$relations =$this->relations();
+		foreach($relations as $nombre=>$relacion)
+			if($relacion[2]===$attr)
+				return $relacion[1];
+		
+		return null;
+	}
+	
 	
 	/**
 	* elimina en cascada
 	**/
 	public function deleteCascade()
 	{
+		foreach ($this->$ingresoPorVentaDetalles as $ingresoPorVentaDetallesn )
+			$ingresoPorVentaDetallesn->deleteCascade();
+
 		$this->delete();
 	}
 
@@ -99,14 +126,8 @@ class IngresoPorDonativo extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'personaFisica' => 'Persona Fisica',
-			'personaMoral' => 'Persona Moral',
-			'fundacionesNacionales' => 'Fundaciones Nacionales',
-			'fundacionesExtrajeras' => 'Fundaciones Extrajeras',
-			'fondosGubernamentales' => 'Fondos Gubernamentales',
-			'especie' => 'Especie',
 			'institucion_aid' => 'Institucion',
-			'ejercicioFiscal_did' => 'Ejercicio Fiscal',
+			'ejercicio_did' => 'Ejercicio',
 			'estatus_did' => 'Estatus',
 			'editable' => 'Editable',
 			'ultimaModificacion_dt' => 'Ultima Modificacion Dt',
@@ -125,14 +146,8 @@ class IngresoPorDonativo extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('personaFisica',$this->personaFisica);
-		$criteria->compare('personaMoral',$this->personaMoral);
-		$criteria->compare('fundacionesNacionales',$this->fundacionesNacionales);
-		$criteria->compare('fundacionesExtrajeras',$this->fundacionesExtrajeras);
-		$criteria->compare('fondosGubernamentales',$this->fondosGubernamentales);
-		$criteria->compare('especie',$this->especie);
 		$criteria->compare('institucion_aid',$this->institucion_aid);
-		$criteria->compare('ejercicioFiscal_did',$this->ejercicioFiscal_did);
+		$criteria->compare('ejercicio_did',$this->ejercicio_did);
 		$criteria->compare('estatus_did',$this->estatus_did);
 		$criteria->compare('editable',$this->editable);
 		$criteria->compare('ultimaModificacion_dt',$this->ultimaModificacion_dt,true);

@@ -6,19 +6,20 @@
 ?>
 <?php
 echo "<?php\n";
-$label=$this->class2name($this->modelClass);
-echo "\$this->pageCaption='Crear $this->modelClass';
+//$label=$this->class2name($this->modelClass);
+$label="$this->modelClass::classNameLabel()";
+echo "\$this->pageCaption='Crear '. $label;
 \$this->pageTitle=Yii::app()->name . ' - ' . \$this->pageCaption;
-\$this->pageDescription='Crear nuevo ".strtolower($this->modelClass)."';
+\$this->pageDescription='Crear nuevo '.$label;
 \$this->breadcrumbs=array(
-	'$label'=>array('index'),
+	$label=>array('index'),
 	'Crear',
 );\n";
 ?>
 
 $this->menu=array(
-	array('label'=>'Listar <?php echo $label; ?>', 'url'=>array('index')),
-	array('label'=>'Administrar <?php echo $label; ?>', 'url'=>array('admin')),
+	array('label'=>'Listar '.<?php echo $label; ?>, 'url'=>array('index')),
+	array('label'=>'Administrar '.<?php echo $label; ?>, 'url'=>array('admin')),
 );
 ?>
 

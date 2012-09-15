@@ -50,8 +50,8 @@ class Estatus extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nombre', 'required'),
-			array('nombre', 'length', 'max'=>45),
+		array('nombre', 'required'),
+array('nombre', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, nombre', 'safe', 'on'=>'search'),
@@ -91,6 +91,34 @@ class Estatus extends CActiveRecord
 			'tipoUsuarios' => array(self::HAS_MANY, 'TipoUsuario', 'estatus_did'),
 			'usuarios' => array(self::HAS_MANY, 'Usuario', 'estatus_did'),
 		);
+	}
+	
+	
+	/**
+	*
+	*/
+	public function attributeIsDirectRelation($attr)
+	{
+		$relations =$this->relations();
+		foreach($relations as $nombre=>$relacion)
+			if($relacion[2]===$attr && $relacion[0]==self::BELONGS_TO)
+				return true;
+		
+		return false;
+	
+	}
+	
+	/**
+	*
+	**/
+	public function attributeDatatypeRelation($attr)
+	{
+		$relations =$this->relations();
+		foreach($relations as $nombre=>$relacion)
+			if($relacion[2]===$attr)
+				return $relacion[1];
+		
+		return null;
 	}
 	
 	

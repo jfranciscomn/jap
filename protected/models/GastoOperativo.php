@@ -51,9 +51,9 @@ class GastoOperativo extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('institucion_aid, ejercicioFiscal_did, estatus_did, editable, ultimaModificacion_dt', 'required'),
-array('institucion_aid, ejercicioFiscal_did, estatus_did, editable', 'numerical', 'integerOnly'=>true),
-array('sueldos, honorarios, combustibles, luzTelefono, papeleria, renta, impuestosDerechos, otros', 'numerical'),
+			array('institucion_aid, ejercicioFiscal_did, estatus_did, editable, ultimaModificacion_dt', 'required'),
+			array('institucion_aid, ejercicioFiscal_did, estatus_did, editable', 'numerical', 'integerOnly'=>true),
+			array('sueldos, honorarios, combustibles, luzTelefono, papeleria, renta, impuestosDerechos, otros', 'numerical'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, sueldos, honorarios, combustibles, luzTelefono, papeleria, renta, impuestosDerechos, otros, institucion_aid, ejercicioFiscal_did, estatus_did, editable, ultimaModificacion_dt', 'safe', 'on'=>'search'),
@@ -66,8 +66,8 @@ array('sueldos, honorarios, combustibles, luzTelefono, papeleria, renta, impuest
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('ejercicioFiscal_did, estatus_did','dropdownfield'),
-array('institucion_aid','autocompletefield'),
+			array('ejercicioFiscal_did, estatus_did','dropdownfield'),
+			array('institucion_aid','autocompletefield'),
 			
 		);
 	}
@@ -86,33 +86,6 @@ array('institucion_aid','autocompletefield'),
 		);
 	}
 	
-	
-	/**
-	*
-	*/
-	public function attributeIsDirectRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr && $relacion[0]==self::BELONGS_TO)
-				return true;
-		
-		return false;
-	
-	}
-	
-	/**
-	*
-	**/
-	public function attributeDatatypeRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr)
-				return $relacion[1];
-		
-		return null;
-	}
 	
 	
 	/**

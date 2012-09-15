@@ -39,7 +39,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view','create','update','admin','delete'),
+				'actions'=>array('index','view','create','update','admin','delete','dynamicList'),
 				'users'=>array('@'),
 			),
 			/*
@@ -203,5 +203,41 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	    }
 	    echo json_encode($result);
 	    Yii::app()->end();
+	}
+	
+	
+	public function actionDynamicList()
+	{
+		echo CHtml::tag('option',array(),CHtml::encode('Seleccione un <?php echo $this->modelClass; ?>'),true);
+		if(Yii::app()->request->isAjaxRequest  )
+		{
+			$criteria=new CDbCriteria;
+			
+			$model = new <?php echo $this->modelClass; ?>;
+			$relations =$model->relations();
+			
+			$bandera =false;
+			
+			foreach($relations as $nombre=>$relacion)
+			{
+				if( $relacion[0]==<?php echo $this->modelClass; ?>::BELONGS_TO && isset($_POST[$relacion[2]]) && !empty($_POST[$relacion[2]]) )
+				{
+					$criteria->compare($relacion[2],$_POST[$relacion[2]]);
+					$bandera = true;
+				}
+			}
+			$criteria->order='<?php echo $stringkey; ?>';
+			
+			if($bandera)
+				$data=CHtml::listData(<?php echo $this->modelClass; ?>::model()->findAll($criteria), 'id', '<?php echo $stringkey; ?>');
+			else
+				$data=array();
+			foreach($data as $value=>$name)
+			{
+				echo CHtml::tag('option',
+				array('value'=>$value),CHtml::encode($name),true);
+			}
+			
+		}
 	}
 }

@@ -1,21 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "AreaGeografica".
+ * This is the model class for table "Municipio".
  *
- * The followings are the available columns in table 'AreaGeografica':
+ * The followings are the available columns in table 'Municipio':
  * @property integer $id
+ * @property string $clave
  * @property string $nombre
+ * @property integer $estado_did
  * @property integer $estatus_did
  *
  * The followings are the available model relations:
  * @property Institucion[] $institucions
+ * @property Estado $estado
+ * @property Estatus $estatus
  */
-class AreaGeografica extends CActiveRecord
+class Municipio extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @return AreaGeografica the static model class
+	 * @return Municipio the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -27,7 +31,7 @@ class AreaGeografica extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'AreaGeografica';
+		return 'Municipio';
 	}
 
 	/**
@@ -38,12 +42,13 @@ class AreaGeografica extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nombre, estatus_did', 'required'),
-			array('estatus_did', 'numerical', 'integerOnly'=>true),
-			array('nombre', 'length', 'max'=>145),
+		array('clave, nombre, estado_did, estatus_did', 'required'),
+array('estado_did, estatus_did', 'numerical', 'integerOnly'=>true),
+array('clave', 'length', 'max'=>45),
+array('nombre', 'length', 'max'=>145),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, nombre, estatus_did', 'safe', 'on'=>'search'),
+			array('id, clave, nombre, estado_did, estatus_did', 'safe', 'on'=>'search'),
 		);
 	}
 	
@@ -53,7 +58,7 @@ class AreaGeografica extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('estatus_did','dropdownfield'),
+		array('estado_did, estatus_did','dropdownfield'),
 			
 		);
 	}
@@ -66,8 +71,38 @@ class AreaGeografica extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'institucions' => array(self::HAS_MANY, 'Institucion', 'areageografica_did'),
+			'institucions' => array(self::HAS_MANY, 'Institucion', 'domicilioMunicipio_aid'),
+			'estado' => array(self::BELONGS_TO, 'Estado', 'estado_did'),
+			'estatus' => array(self::BELONGS_TO, 'Estatus', 'estatus_did'),
 		);
+	}
+	
+	
+	/**
+	*
+	*/
+	public function attributeIsDirectRelation($attr)
+	{
+		$relations =$this->relations();
+		foreach($relations as $nombre=>$relacion)
+			if($relacion[2]===$attr && $relacion[0]==self::BELONGS_TO)
+				return true;
+		
+		return false;
+	
+	}
+	
+	/**
+	*
+	**/
+	public function attributeDatatypeRelation($attr)
+	{
+		$relations =$this->relations();
+		foreach($relations as $nombre=>$relacion)
+			if($relacion[2]===$attr)
+				return $relacion[1];
+		
+		return null;
 	}
 	
 	
@@ -89,7 +124,9 @@ class AreaGeografica extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'clave' => 'Clave',
 			'nombre' => 'Nombre',
+			'estado_did' => 'Estado',
 			'estatus_did' => 'Estatus',
 		);
 	}
@@ -106,7 +143,9 @@ class AreaGeografica extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('clave',$this->clave,true);
 		$criteria->compare('nombre',$this->nombre,true);
+		$criteria->compare('estado_did',$this->estado_did);
 		$criteria->compare('estatus_did',$this->estatus_did);
 
 		return new CActiveDataProvider($this, array(

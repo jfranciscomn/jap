@@ -10,7 +10,7 @@ echo "<?php\n";
 $label="$this->modelClass::classNameLabel()";
 echo "\$this->pageCaption=$label;
 \$this->pageTitle=Yii::app()->name . ' - ' . \$this->pageCaption;
-\$this->pageDescription='Listar '. $label ;
+\$this->pageDescription='Listar '. $label .';
 \$this->breadcrumbs=array(
 	$label,
 );\n";
