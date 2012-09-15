@@ -7,21 +7,19 @@
 		</div>
 <?php endif; ?>
 		<div class="row">
-			<div class="span8">
-				<?php echo $content; ?>
-			</div>
-			<div class="span4">
-				<h3><?php echo CHtml::encode($this->sidebarCaption); ?></h3>
+			<div class="span12">
+				<h3>Menú<?php //echo CHtml::encode($this->sidebarCaption); ?></h3>
 				<?php
-					$this->beginWidget('zii.widgets.CPortlet', array(
-						'title'=>'Operations',
-					));
 					$this->widget('zii.widgets.CMenu', array(
 						'items'=>$this->menu,
-						'htmlOptions'=>array('class'=>'operations'),
-					));
-					$this->endWidget();
+						'htmlOptions'=>array(
+						'class'=>'nav nav-tabs',
+						),
+					));					
 				?>
+			</div>
+			<div class="span12">
+				<?php echo $content; ?>
 			</div>
 		</div>
 	</div>

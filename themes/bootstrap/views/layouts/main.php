@@ -29,26 +29,73 @@
 		<div class="navbar-inner">
 			<div class="container">
 				<a class="brand" href="<?php echo $this->createAbsoluteUrl('//'); ?>"><?php echo CHtml::encode(Yii::app()->name); ?></a>
-				<?php $this->widget('zii.widgets.CMenu',array(
+				<?php 
+					$items = array();
+					$usuarioActual = Usuario::model()->find('usuario=:x',array(':x'=>Yii::app()->user->name));
+					//echo '<pre>'; print_r($usuarioActual->attributes); echo '</pre>';
+					//exit;
+					if(isset($usuarioActual) && $usuarioActual->tipousuario->nombre == 'Administrador'){
+						$items=	array(
+								array('label'=>'Inicio', 'url'=>array('site/index')),
+								array('label'=>'Catálogos', 
+									'url'=>'#',
+									'itemOptions'=>array('class'=>'dropdown','id'=>'home'),
+									'linkOptions'=>array('class'=>'dropdown-toggle', 'data-toggle'=>'dropdown'),
+									'submenuOptions'=>array('class'=>'dropdown-menu'),
+									'items'=>array(
+										array('label'=>'Ámbito', 'url'=>array('/ambito/index')),
+										array('label'=>'Área Geográfica', 'url'=>array('/areageografica/index')),
+										array('label'=>'Ejercicio Fiscal', 'url'=>array('/ejerciciofiscal/index')),
+										array('label'=>'Estado', 'url'=>array('/estado/index')),
+										array('label'=>'Estatus', 'url'=>array('/estatus/index')),
+										array('label'=>'Gasto de Administración', 'url'=>array('/gastodeadministracion/index')),
+										array('label'=>'Gasto Operativo', 'url'=>array('/gastooperativo/index')),
+										array('label'=>'Ingreso Por Cuotas de Recuperación', 'url'=>array('/ingresoporcuotasderecuperacion/index')),
+										array('label'=>'Ingreso Por Donativo', 'url'=>array('/ingresopordonativo/index')),
+										array('label'=>'Ingreso Por Evento', 'url'=>array('/ingresoporevento/index')),
+										array('label'=>'Ingreso Por Venta', 'url'=>array('/ingresoporventa/index')),
+										array('label'=>'Ingreso Por Venta Detalle', 'url'=>array('/ingresoporventadetalle/index')),
+										array('label'=>'Institución', 'url'=>array('/institucion/index')),
+										array('label'=>'Municipio', 'url'=>array('/municipio/index')),										
+										array('label'=>'Tipo de Usuario', 'url'=>array('/tipousuario/index')),
+										array('label'=>'Usuario', 'url'=>array('/usuario/index')),
+									),
+									'visible'=>!Yii::app()->user->isGuest
+								),								
+								array('label'=>'Acerca de', 'url'=>array('/site/page', 'view'=>'about')),
+								array('label'=>'Contacto', 'url'=>array('/site/contact')),
+						);
+					}
+					elseif(isset($usuarioActual) && $usuarioActual->tipousuario->nombre == 'Maestro'){
+						$items=array(
+							array('label'=>'Mis Materias', 'url'=>array('/site/index')),
+							array('label'=>'Acerca de', 'url'=>array('/site/page', 'view'=>'about')),
+							array('label'=>'Contacto', 'url'=>array('/site/contact')),
+						);
+					}					
+					$items[]=array('label'=>'Iniciar Sesión', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest);
+								
+					$this->widget('ext.custom.widgets.BMenu',array(
+						'items'=>$items,
+						 'activateParents'=>true,
+						'activeCssClass'=>'',
+						'htmlOptions'=>array(
+							'class'=>'nav nav-pills',
+						),
+					)); 
+				?>
+
+				<?php 
+				//echo '<pre>'; print_r($usuarioActual->tipoUsuario); echo '</pre>';
+				$this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
-						array('label'=>'Home', 'url'=>array('/site/index')),
-						array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-						array('label'=>'Contact', 'url'=>array('/site/contact')),
-						array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-					),
-					'htmlOptions'=>array(
-						'class'=>'nav',
-					),
-				)); ?>
-				<?php $this->widget('zii.widgets.CMenu',array(
-					'items'=>array(
-						array('label'=>Yii::app()->user->name, 'url'=>array('site/profile'), 'visible'=>!Yii::app()->user->isGuest),
-						array('label'=>'Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest, 'htmlOptions'=>array('class'=>'btn'))
+						array('label'=>'Bienvenido ' . Yii::app()->user->name, 'url'=>array('site/profile'), 'visible'=>!Yii::app()->user->isGuest),
+						array('label'=>'Cerrar Sesión', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest, 'htmlOptions'=>array('class'=>'btn'))
 					),
 					'htmlOptions'=>array(
 						'class'=>'nav pull-right',
 					),
-				)); ?>
+				)); ?>				
 			</div>
 		</div>
 	</div>
