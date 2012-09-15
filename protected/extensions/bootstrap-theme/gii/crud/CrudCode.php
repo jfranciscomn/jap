@@ -67,7 +67,9 @@ class CrudCode extends CCodeModel
 		$class=@Yii::import($this->model,true);
 		//echo '<pre>'; print_r (); echo '</pre>';
 		//echo '<pre>'; print_r ($this->getModule()); echo '</pre>';
-		Yii::import(substr($this->model,0,strrpos($this->model,'.')).'.*',true);
+		$ruta=substr($this->model,0,strrpos($this->model,'.'));
+		if(!empty($ruta))
+			Yii::import(substr($this->model,0,strrpos($this->model,'.')).'.*',true);
 		if(!is_string($class) || !$this->classExists($class))
 			$this->addError('model', "Class '{$this->model}' does not exist or has syntax error.");
 		else if(!is_subclass_of($class,'CActiveRecord'))

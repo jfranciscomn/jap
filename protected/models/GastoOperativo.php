@@ -30,6 +30,12 @@ class GastoOperativo extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return GastoOperativo the static model class
 	 */
+	 
+	public static function classNameLabel()
+	{
+		return 'GastoOperativo';
+	}
+	
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -86,6 +92,19 @@ class GastoOperativo extends CActiveRecord
 		);
 	}
 	
+	
+	/**
+	*
+	*/
+	public function setLinkedRelations(){
+		/*return array('municipio_id'=>array(
+				'model'=>'Estado',
+				'attribute' =>'estado_id',
+				'value'=> $this->municipio->estado->id,
+			),);*/
+			
+		return array();
+	}
 	
 	
 	/**

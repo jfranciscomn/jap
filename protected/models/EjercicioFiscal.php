@@ -25,6 +25,12 @@ class EjercicioFiscal extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return EjercicioFiscal the static model class
 	 */
+	 
+	public static function classNameLabel()
+	{
+		return 'EjercicioFiscal';
+	}
+	
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -62,7 +68,7 @@ class EjercicioFiscal extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('estatus_did','dropdownfield'),
+			array('estatus_did','dropdownfield'),
 			
 		);
 	}
@@ -86,7 +92,19 @@ class EjercicioFiscal extends CActiveRecord
 	}
 	
 	
-
+	/**
+	*
+	*/
+	public function setLinkedRelations(){
+		/*return array('municipio_id'=>array(
+				'model'=>'Estado',
+				'attribute' =>'estado_id',
+				'value'=> $this->municipio->estado->id,
+			),);*/
+			
+		return array();
+	}
+	
 	
 	/**
 	* elimina en cascada

@@ -21,6 +21,12 @@ class Municipio extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return Municipio the static model class
 	 */
+	 
+	public static function classNameLabel()
+	{
+		return 'Municipio';
+	}
+	
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -42,10 +48,10 @@ class Municipio extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('clave, nombre, estado_did, estatus_did', 'required'),
-array('estado_did, estatus_did', 'numerical', 'integerOnly'=>true),
-array('clave', 'length', 'max'=>45),
-array('nombre', 'length', 'max'=>145),
+			array('clave, nombre, estado_did, estatus_did', 'required'),
+			array('estado_did, estatus_did', 'numerical', 'integerOnly'=>true),
+			array('clave', 'length', 'max'=>45),
+			array('nombre', 'length', 'max'=>145),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, clave, nombre, estado_did, estatus_did', 'safe', 'on'=>'search'),
@@ -58,7 +64,7 @@ array('nombre', 'length', 'max'=>145),
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('estado_did, estatus_did','dropdownfield'),
+			array('estado_did, estatus_did','dropdownfield'),
 			
 		);
 	}
@@ -81,28 +87,14 @@ array('nombre', 'length', 'max'=>145),
 	/**
 	*
 	*/
-	public function attributeIsDirectRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr && $relacion[0]==self::BELONGS_TO)
-				return true;
-		
-		return false;
-	
-	}
-	
-	/**
-	*
-	**/
-	public function attributeDatatypeRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr)
-				return $relacion[1];
-		
-		return null;
+	public function setLinkedRelations(){
+		/*return array('municipio_id'=>array(
+				'model'=>'Estado',
+				'attribute' =>'estado_id',
+				'value'=> $this->municipio->estado->id,
+			),);*/
+			
+		return array();
 	}
 	
 	

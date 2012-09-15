@@ -19,6 +19,12 @@ class Estado extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return Estado the static model class
 	 */
+	 
+	public static function classNameLabel()
+	{
+		return 'Estado';
+	}
+	
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -56,7 +62,7 @@ class Estado extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('estatus_did','dropdownfield'),
+			array('estatus_did','dropdownfield'),
 			
 		);
 	}
@@ -72,6 +78,20 @@ class Estado extends CActiveRecord
 			'estatus' => array(self::BELONGS_TO, 'Estatus', 'estatus_did'),
 			'municipios' => array(self::HAS_MANY, 'Municipio', 'estado_did'),
 		);
+	}
+	
+	
+	/**
+	*
+	*/
+	public function setLinkedRelations(){
+		/*return array('municipio_id'=>array(
+				'model'=>'Estado',
+				'attribute' =>'estado_id',
+				'value'=> $this->municipio->estado->id,
+			),);*/
+			
+		return array();
 	}
 	
 	

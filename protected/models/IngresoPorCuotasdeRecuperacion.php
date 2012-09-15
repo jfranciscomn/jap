@@ -25,6 +25,12 @@ class IngresoPorCuotasdeRecuperacion extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return IngresoPorCuotasdeRecuperacion the static model class
 	 */
+	 
+	public static function classNameLabel()
+	{
+		return 'IngresoPorCuotasdeRecuperacion';
+	}
+	
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -79,6 +85,20 @@ class IngresoPorCuotasdeRecuperacion extends CActiveRecord
 			'estatus' => array(self::BELONGS_TO, 'Estatus', 'estatus_did'),
 			'ejercicioFiscal' => array(self::BELONGS_TO, 'EjercicioFiscal', 'ejercicioFiscal_did'),
 		);
+	}
+	
+	
+	/**
+	*
+	*/
+	public function setLinkedRelations(){
+		/*return array('municipio_id'=>array(
+				'model'=>'Estado',
+				'attribute' =>'estado_id',
+				'value'=> $this->municipio->estado->id,
+			),);*/
+			
+		return array();
 	}
 	
 	

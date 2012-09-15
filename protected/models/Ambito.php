@@ -18,6 +18,12 @@ class Ambito extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return Ambito the static model class
 	 */
+	 
+	public static function classNameLabel()
+	{
+		return 'Ambito';
+	}
+	
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -54,7 +60,7 @@ class Ambito extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('estatus_did','dropdownfield'),
+			array('estatus_did','dropdownfield'),
 			
 		);
 	}
@@ -72,6 +78,19 @@ class Ambito extends CActiveRecord
 		);
 	}
 	
+	
+	/**
+	*
+	*/
+	public function setLinkedRelations(){
+		/*return array('municipio_id'=>array(
+				'model'=>'Estado',
+				'attribute' =>'estado_id',
+				'value'=> $this->municipio->estado->id,
+			),);*/
+			
+		return array();
+	}
 	
 	
 	/**

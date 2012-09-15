@@ -29,6 +29,12 @@ class GastoDeAdministracion extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return GastoDeAdministracion the static model class
 	 */
+	 
+	public static function classNameLabel()
+	{
+		return 'GastoDeAdministracion';
+	}
+	
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -89,16 +95,16 @@ class GastoDeAdministracion extends CActiveRecord
 	/**
 	*
 	*/
-	public function attributeIsDirectRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr && $relacion[0]==self::BELONGS_TO)
-				return true;
-		
-		return false;
-	
+	public function setLinkedRelations(){
+		/*return array('municipio_id'=>array(
+				'model'=>'Estado',
+				'attribute' =>'estado_id',
+				'value'=> $this->municipio->estado->id,
+			),);*/
+			
+		return array();
 	}
+	
 	
 	/**
 	* elimina en cascada

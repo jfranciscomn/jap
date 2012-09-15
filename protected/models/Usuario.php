@@ -1,18 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "usuario".
+ * This is the model class for table "Usuario".
  *
- * The followings are the available columns in table 'usuario':
+ * The followings are the available columns in table 'Usuario':
  * @property integer $id
  * @property string $usuario
  * @property string $password
  * @property integer $tipousuario_did
+ * @property integer $institucion_aid
  * @property integer $estatus_did
  *
  * The followings are the available model relations:
- * @property TipoUsuario $tipousuario
  * @property Estatus $estatus
+ * @property Institucion $institucion
+ * @property TipoUsuario $tipousuario
  */
 class Usuario extends CActiveRecord
 {
@@ -20,6 +22,12 @@ class Usuario extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return Usuario the static model class
 	 */
+	 
+	public static function classNameLabel()
+	{
+		return 'Usuario';
+	}
+	
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -42,11 +50,24 @@ class Usuario extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('usuario, password, tipousuario_did, estatus_did', 'required'),
-			array('tipousuario_did, estatus_did', 'numerical', 'integerOnly'=>true),
-			array('usuario, password', 'length', 'max'=>150),
+			array('tipousuario_did, institucion_aid, estatus_did', 'numerical', 'integerOnly'=>true),
+			array('usuario', 'length', 'max'=>45),
+			array('password', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, usuario, password, tipousuario_did, estatus_did', 'safe', 'on'=>'search'),
+			array('id, usuario, password, tipousuario_did, institucion_aid, estatus_did', 'safe', 'on'=>'search'),
+		);
+	}
+	
+	
+	public function extendedRules()
+	{
+		// NOTE: you should only define rules for those attributes that
+		// will receive user inputs.
+		return array(
+			array('tipousuario_did, estatus_did','dropdownfield'),
+			array('institucion_aid','autocompletefield'),
+			
 		);
 	}
 
@@ -58,9 +79,33 @@ class Usuario extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'tipousuario' => array(self::BELONGS_TO, 'TipoUsuario', 'tipousuario_did'),
 			'estatus' => array(self::BELONGS_TO, 'Estatus', 'estatus_did'),
+			'institucion' => array(self::BELONGS_TO, 'Institucion', 'institucion_aid'),
+			'tipousuario' => array(self::BELONGS_TO, 'TipoUsuario', 'tipousuario_did'),
 		);
+	}
+	
+	
+	/**
+	*
+	*/
+	public function setLinkedRelations(){
+		/*return array('municipio_id'=>array(
+				'model'=>'Estado',
+				'attribute' =>'estado_id',
+				'value'=> $this->municipio->estado->id,
+			),);*/
+			
+		return array();
+	}
+	
+	
+	/**
+	* elimina en cascada
+	**/
+	public function deleteCascade()
+	{
+		$this->delete();
 	}
 
 	/**
@@ -73,6 +118,7 @@ class Usuario extends CActiveRecord
 			'usuario' => 'Usuario',
 			'password' => 'Password',
 			'tipousuario_did' => 'Tipousuario',
+			'institucion_aid' => 'Institucion',
 			'estatus_did' => 'Estatus',
 		);
 	}
@@ -92,25 +138,11 @@ class Usuario extends CActiveRecord
 		$criteria->compare('usuario',$this->usuario,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('tipousuario_did',$this->tipousuario_did);
+		$criteria->compare('institucion_aid',$this->institucion_aid);
 		$criteria->compare('estatus_did',$this->estatus_did);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-	public function getSuperUsers()
-		{
-			$criteria = new CDbCriteria;
-
-			$tipoUsuario= TipoUsuario::model()->find('nombre=:nombre', array(':nombre'=>'Administracion'));
-			//$criteria->select='usuario';
-			$criteria->compare('tipousuario_did',$tipoUsuario->id);
-
-			$superusers = $this->findAll($criteria);
-			$susers = array();
-			foreach($superusers as $suser){
-				$susers[] = $suser->usuario;
-			}
-			return $susers;
-		}
 }

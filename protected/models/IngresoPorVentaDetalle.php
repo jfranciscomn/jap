@@ -20,6 +20,12 @@ class IngresoPorVentaDetalle extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return IngresoPorVentaDetalle the static model class
 	 */
+	 
+	public static function classNameLabel()
+	{
+		return 'IngresoPorVentaDetalle';
+	}
+	
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -41,10 +47,10 @@ class IngresoPorVentaDetalle extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('concepto, ingresoPorVenta_aid, estatus_did', 'required'),
-array('ingresoPorVenta_aid, estatus_did', 'numerical', 'integerOnly'=>true),
-array('cantidad', 'numerical'),
-array('concepto', 'length', 'max'=>150),
+			array('concepto, ingresoPorVenta_aid, estatus_did', 'required'),
+			array('ingresoPorVenta_aid, estatus_did', 'numerical', 'integerOnly'=>true),
+			array('cantidad', 'numerical'),
+			array('concepto', 'length', 'max'=>150),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, concepto, cantidad, ingresoPorVenta_aid, estatus_did', 'safe', 'on'=>'search'),
@@ -57,8 +63,8 @@ array('concepto', 'length', 'max'=>150),
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('estatus_did','dropdownfield'),
-array('ingresoPorVenta_aid','autocompletefield'),
+			array('estatus_did','dropdownfield'),
+			array('ingresoPorVenta_aid','autocompletefield'),
 			
 		);
 	}
@@ -80,28 +86,14 @@ array('ingresoPorVenta_aid','autocompletefield'),
 	/**
 	*
 	*/
-	public function attributeIsDirectRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr && $relacion[0]==self::BELONGS_TO)
-				return true;
-		
-		return false;
-	
-	}
-	
-	/**
-	*
-	**/
-	public function attributeDatatypeRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr)
-				return $relacion[1];
-		
-		return null;
+	public function setLinkedRelations(){
+		/*return array('municipio_id'=>array(
+				'model'=>'Estado',
+				'attribute' =>'estado_id',
+				'value'=> $this->municipio->estado->id,
+			),);*/
+			
+		return array();
 	}
 	
 	

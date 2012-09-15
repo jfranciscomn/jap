@@ -28,6 +28,12 @@ class IngresoPorDonativo extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return IngresoPorDonativo the static model class
 	 */
+	 
+	public static function classNameLabel()
+	{
+		return 'IngresoPorDonativo';
+	}
+	
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -83,6 +89,21 @@ class IngresoPorDonativo extends CActiveRecord
 			'institucion' => array(self::BELONGS_TO, 'Institucion', 'institucion_aid'),
 		);
 	}
+	
+	
+	/**
+	*
+	*/
+	public function setLinkedRelations(){
+		/*return array('municipio_id'=>array(
+				'model'=>'Estado',
+				'attribute' =>'estado_id',
+				'value'=> $this->municipio->estado->id,
+			),);*/
+			
+		return array();
+	}
+	
 	
 	/**
 	* elimina en cascada

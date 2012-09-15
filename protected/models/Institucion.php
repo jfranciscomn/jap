@@ -45,6 +45,12 @@ class Institucion extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return Institucion the static model class
 	 */
+	 
+	public static function classNameLabel()
+	{
+		return 'Institucion';
+	}
+	
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -66,12 +72,12 @@ class Institucion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('nombre, siglas, domicioDireccion, domicilioCP, domicilioMunicipio_aid, fechaConstitucion_dt, rfc, donativoDeducible, donativoConvenio, ambito_did, areageografica_did, estatus_did', 'required'),
-array('domicilioMunicipio_aid, donativoDeducible, donativoConvenio, ambito_did, areageografica_did, horasPromedio_trabajador, estatus_did', 'numerical', 'integerOnly'=>true),
-array('nombre, domicioDireccion, contactoEmail', 'length', 'max'=>145),
-array('siglas, domicilioCP, contactoTelefono, contactoFax, cluni', 'length', 'max'=>45),
-array('rfc', 'length', 'max'=>13),
-array('mision, vision, fechaTransformacion_dt', 'safe'),
+			array('nombre, siglas, domicioDireccion, domicilioCP, domicilioMunicipio_aid, fechaConstitucion_dt, rfc, donativoDeducible, donativoConvenio, ambito_did, areageografica_did, estatus_did', 'required'),
+			array('domicilioMunicipio_aid, donativoDeducible, donativoConvenio, ambito_did, areageografica_did, horasPromedio_trabajador, estatus_did', 'numerical', 'integerOnly'=>true),
+			array('nombre, domicioDireccion, contactoEmail', 'length', 'max'=>145),
+			array('siglas, domicilioCP, contactoTelefono, contactoFax, cluni', 'length', 'max'=>45),
+			array('rfc', 'length', 'max'=>13),
+			array('mision, vision, fechaTransformacion_dt', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, nombre, siglas, mision, vision, domicioDireccion, domicilioCP, domicilioMunicipio_aid, contactoTelefono, contactoFax, contactoEmail, fechaConstitucion_dt, fechaTransformacion_dt, rfc, donativoDeducible, donativoConvenio, cluni, ambito_did, areageografica_did, horasPromedio_trabajador, estatus_did', 'safe', 'on'=>'search'),
@@ -84,8 +90,8 @@ array('mision, vision, fechaTransformacion_dt', 'safe'),
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('ambito_did, areageografica_did, estatus_did','dropdownfield'),
-array('domicilioMunicipio_aid','autocompletefield'),
+			array('ambito_did, areageografica_did, estatus_did','dropdownfield'),
+			array('domicilioMunicipio_aid','autocompletefield'),
 			
 		);
 	}
@@ -116,28 +122,14 @@ array('domicilioMunicipio_aid','autocompletefield'),
 	/**
 	*
 	*/
-	public function attributeIsDirectRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr && $relacion[0]==self::BELONGS_TO)
-				return true;
-		
-		return false;
-	
-	}
-	
-	/**
-	*
-	**/
-	public function attributeDatatypeRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr)
-				return $relacion[1];
-		
-		return null;
+	public function setLinkedRelations(){
+		/*return array('municipio_id'=>array(
+				'model'=>'Estado',
+				'attribute' =>'estado_id',
+				'value'=> $this->municipio->estado->id,
+			),);*/
+			
+		return array();
 	}
 	
 	

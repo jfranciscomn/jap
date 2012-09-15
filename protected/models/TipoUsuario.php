@@ -1,11 +1,12 @@
 <?php
 
 /**
- * This is the model class for table "tipoUsuario".
+ * This is the model class for table "TipoUsuario".
  *
- * The followings are the available columns in table 'tipoUsuario':
+ * The followings are the available columns in table 'TipoUsuario':
  * @property integer $id
  * @property string $nombre
+ * @property string $descripcion
  * @property integer $estatus_did
  *
  * The followings are the available model relations:
@@ -18,6 +19,12 @@ class TipoUsuario extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return TipoUsuario the static model class
 	 */
+	 
+	public static function classNameLabel()
+	{
+		return 'TipoUsuario';
+	}
+	
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -41,10 +48,21 @@ class TipoUsuario extends CActiveRecord
 		return array(
 			array('nombre, estatus_did', 'required'),
 			array('estatus_did', 'numerical', 'integerOnly'=>true),
-			array('nombre', 'length', 'max'=>145),
+			array('nombre, descripcion', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, nombre, estatus_did', 'safe', 'on'=>'search'),
+			array('id, nombre, descripcion, estatus_did', 'safe', 'on'=>'search'),
+		);
+	}
+	
+	
+	public function extendedRules()
+	{
+		// NOTE: you should only define rules for those attributes that
+		// will receive user inputs.
+		return array(
+			array('estatus_did','dropdownfield'),
+			
 		);
 	}
 
@@ -60,6 +78,32 @@ class TipoUsuario extends CActiveRecord
 			'usuarios' => array(self::HAS_MANY, 'Usuario', 'tipousuario_did'),
 		);
 	}
+	
+	
+	/**
+	*
+	*/
+	public function setLinkedRelations(){
+		/*return array('municipio_id'=>array(
+				'model'=>'Estado',
+				'attribute' =>'estado_id',
+				'value'=> $this->municipio->estado->id,
+			),);*/
+			
+		return array();
+	}
+	
+	
+	/**
+	* elimina en cascada
+	**/
+	public function deleteCascade()
+	{
+		foreach ($this->$usuarios as $usuariosn )
+			$usuariosn->deleteCascade();
+
+		$this->delete();
+	}
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -69,6 +113,7 @@ class TipoUsuario extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'nombre' => 'Nombre',
+			'descripcion' => 'Descripcion',
 			'estatus_did' => 'Estatus',
 		);
 	}
@@ -86,6 +131,7 @@ class TipoUsuario extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('nombre',$this->nombre,true);
+		$criteria->compare('descripcion',$this->descripcion,true);
 		$criteria->compare('estatus_did',$this->estatus_did);
 
 		return new CActiveDataProvider($this, array(

@@ -67,7 +67,8 @@ class CrudCode extends CCodeModel
 		$class=@Yii::import($this->model,true);
 		//echo '<pre>'; print_r (); echo '</pre>';
 		//echo '<pre>'; print_r ($this->getModule()); echo '</pre>';
-		Yii::import(substr($this->model,0,strrpos($this->model,'.')).'.*',true);
+		if(!empty(substr($this->model,0,strrpos($this->model,'.'))))
+			Yii::import(substr($this->model,0,strrpos($this->model,'.')).'.*',true);
 		if(!is_string($class) || !$this->classExists($class))
 			$this->addError('model', "Class '{$this->model}' does not exist or has syntax error.");
 		else if(!is_subclass_of($class,'CActiveRecord'))
@@ -270,7 +271,7 @@ class CrudCode extends CCodeModel
 					return '$form->dropDownList($model,\''.$columname.'\',CHtml::listData('.$modelo->attributeDatatypeRelation($columname)."::model()->findAll(), 'id', '{$stringkey}'))";
 			}
 			else if(!empty($this->_fieldTypes['autocompletefield'])  &&  in_array($columname, $this->_fieldTypes['autocompletefield']))
-				return " ''; ?> \$this->widget('ext.custom.widgets.EJuiAutoCompleteFkField', array(
+				return " ''; ?> <?php \$this->widget('ext.custom.widgets.EJuiAutoCompleteFkField', array(
 						'model'=>\$model, 
 						'attribute'=>'$columname', 
 						'sourceUrl'=>Yii::app()->createUrl('".$modelo->attributeReferenceRelation($columname)."/autocompletesearch'), 
