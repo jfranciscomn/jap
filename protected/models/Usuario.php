@@ -53,6 +53,7 @@ class Usuario extends CActiveRecord
 			array('tipousuario_did, institucion_aid, estatus_did', 'numerical', 'integerOnly'=>true),
 			array('usuario', 'length', 'max'=>45),
 			array('password', 'length', 'max'=>150),
+
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, usuario, password, tipousuario_did, institucion_aid, estatus_did', 'safe', 'on'=>'search'),

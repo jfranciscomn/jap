@@ -41,7 +41,7 @@ return array(
 		      'ipFilters'=>array('*','::1'),
 		      'generatorPaths'=>array('ext.bootstrap-theme.gii',),
 		      'custom'=>array(
-		      	'Stringkey'=>'nombre',
+		      	'StringKey'=>'nombre',
 		      ),
 		    ),
 	),
