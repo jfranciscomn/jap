@@ -73,6 +73,7 @@ class AreaGeografica extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'institucions' => array(self::HAS_MANY, 'Institucion', 'areageografica_did'),
+			'estatus' => array(self::BELONGS_TO, 'Estatus', 'estatus_did'),
 		);
 	}
 	

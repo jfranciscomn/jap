@@ -17,6 +17,12 @@ class AreaGeografica extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return AreaGeografica the static model class
 	 */
+	 
+	public static function classNameLabel()
+	{
+		return 'AreaGeografica';
+	}
+	
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
@@ -53,7 +59,7 @@ class AreaGeografica extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('estatus_did','dropdownfield'),
+			array('estatus_did','dropdownfield'),
 			
 		);
 	}
@@ -74,28 +80,14 @@ class AreaGeografica extends CActiveRecord
 	/**
 	*
 	*/
-	public function attributeIsDirectRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr && $relacion[0]==self::BELONGS_TO)
-				return true;
-		
-		return false;
-	
-	}
-	
-	/**
-	*
-	**/
-	public function attributeDatatypeRelation($attr)
-	{
-		$relations =$this->relations();
-		foreach($relations as $nombre=>$relacion)
-			if($relacion[2]===$attr)
-				return $relacion[1];
-		
-		return null;
+	public function setLinkedRelations(){
+		/*return array('municipio_id'=>array(
+				'model'=>'Estado',
+				'attribute' =>'estado_id',
+				'value'=> $this->municipio->estado->id,
+			),);*/
+			
+		return array();
 	}
 	
 	

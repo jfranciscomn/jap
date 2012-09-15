@@ -31,7 +31,7 @@ class TipoUsuarioController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view','create','update','admin','delete'),
+				'actions'=>array('index','view','create','update','admin','delete','dynamicList'),
 				'users'=>array('@'),
 			),
 			/*
@@ -183,17 +183,53 @@ class TipoUsuarioController extends Controller
 	    if (!empty($q))
 	    {
 			$criteria=new CDbCriteria;
-			$criteria->select=array('id', "CONCAT_WS(' ',) as ");
-			$criteria->condition="lower(CONCAT_WS(' ',)) like lower(:nombre) ";
+			$criteria->select=array('id', "CONCAT_WS(' ',nombre) as nombre");
+			$criteria->condition="lower(CONCAT_WS(' ',nombre)) like lower(:nombre) ";
 			$criteria->params=array(':nombre'=>$q);
 			$criteria->limit='10';
 	       	$cursor = TipoUsuario::model()->findAll($criteria);
 			foreach ($cursor as $valor)	
-				$result[]=Array('label' => $valor->,  
-				                'value' => $valor->,
+				$result[]=Array('label' => $valor->nombre,  
+				                'value' => $valor->nombre,
 				                'id' => $valor->id, );
 	    }
 	    echo json_encode($result);
 	    Yii::app()->end();
+	}
+	
+	
+	public function actionDynamicList()
+	{
+		echo CHtml::tag('option',array(),CHtml::encode('Seleccione un TipoUsuario'),true);
+		if(Yii::app()->request->isAjaxRequest  )
+		{
+			$criteria=new CDbCriteria;
+			
+			$model = new TipoUsuario;
+			$relations =$model->relations();
+			
+			$bandera =false;
+			
+			foreach($relations as $nombre=>$relacion)
+			{
+				if( $relacion[0]==TipoUsuario::BELONGS_TO && isset($_POST[$relacion[2]]) && !empty($_POST[$relacion[2]]) )
+				{
+					$criteria->compare($relacion[2],$_POST[$relacion[2]]);
+					$bandera = true;
+				}
+			}
+			$criteria->order='nombre';
+			
+			if($bandera)
+				$data=CHtml::listData(TipoUsuario::model()->findAll($criteria), 'id', 'nombre');
+			else
+				$data=array();
+			foreach($data as $value=>$name)
+			{
+				echo CHtml::tag('option',
+				array('value'=>$value),CHtml::encode($name),true);
+			}
+			
+		}
 	}
 }

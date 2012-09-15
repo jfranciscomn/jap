@@ -1,18 +1,18 @@
 <?php
-$this->pageCaption='Ver TipoUsuario #'.$model->id;
+$this->pageCaption='Ver '.TipoUsuario::classNameLabel().' #'.$model->id;
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
 $this->pageDescription='';
 $this->breadcrumbs=array(
-	'Tipo Usuario'=>array('index'),
+	TipoUsuario::classNameLabel()=>array('index'),
 	$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'Listar Tipo Usuario', 'url'=>array('index')),
-	array('label'=>'Crear TipoUsuario', 'url'=>array('create')),
-	array('label'=>'Actualizar TipoUsuario', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Eliminar TipoUsuario', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estas seguro que quieres eliminar este elemento?')),
-	array('label'=>'Administrar Tipo Usuario', 'url'=>array('admin')),
+	array('label'=>'Listar '.TipoUsuario::classNameLabel(), 'url'=>array('index')),
+	array('label'=>'Crear '. TipoUsuario::classNameLabel(), 'url'=>array('create')),
+	array('label'=>'Actualizar '. TipoUsuario::classNameLabel(), 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Eliminar '. TipoUsuario::classNameLabel(), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estas seguro que quieres eliminar este elemento?')),
+	array('label'=>'Administrar '.TipoUsuario::classNameLabel(), 'url'=>array('admin')),
 );
 ?>
 
@@ -26,6 +26,6 @@ $this->menu=array(
 		'nombre',
 		'descripcion',
 		array(	'name'=>'estatus_did',
-		        'value'=>$model->estatus->,),
+		        'value'=>$model->estatus->nombre,),
 	),
 )); ?>

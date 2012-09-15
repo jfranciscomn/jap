@@ -1,15 +1,15 @@
 <?php
-$this->pageCaption='Administrar Tipo Usuario';
+$this->pageCaption='Administrar '.TipoUsuario::classNameLabel();
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
-$this->pageDescription='Administrar tipo usuario';
+$this->pageDescription='Administrar '.TipoUsuario::classNameLabel();
 $this->breadcrumbs=array(
-	'Tipo Usuario'=>array('index'),
+	TipoUsuario::classNameLabel()=>array('index'),
 	'Administrar',
 );
 
 $this->menu=array(
-	array('label'=>'Listar Tipo Usuario', 'url'=>array('index')),
-	array('label'=>'Crear TipoUsuario', 'url'=>array('create')),
+	array('label'=>'Listar '.TipoUsuario::classNameLabel(), 'url'=>array('index')),
+	array('label'=>'Crear '.TipoUsuario::classNameLabel(), 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -46,8 +46,8 @@ $('.search-form form').submit(function(){
 		'nombre',
 		'descripcion',
 		array(	'name'=>'estatus_did',
-		        'value'=>'$data->estatus->',
-			    'filter'=>CHtml::listData(Estatus::model()->findAll(), 'id', ''),),
+		        'value'=>'$data->estatus->nombre',
+			    'filter'=>CHtml::listData(Estatus::model()->findAll(), 'id', 'nombre'),),
 		array(
 			'class'=>'CButtonColumn',
 		),

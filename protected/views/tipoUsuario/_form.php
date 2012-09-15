@@ -34,7 +34,7 @@
 		<?php echo $form->labelEx($model,'estatus_did'); ?>
 		<div class="input">
 			
-			<?php echo $form->dropDownList($model,'estatus_did',CHtml::listData(Estatus::model()->findAll(), 'id', '')); ?>
+			<?php echo $form->dropDownList($model,'estatus_did',CHtml::listData(Estatus::model()->findAll(), 'id', 'nombre')); ?>
 			<?php echo $form->error($model,'estatus_did'); ?>
 		</div>
 	</div>
