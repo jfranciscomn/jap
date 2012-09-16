@@ -1,7 +1,7 @@
 <?php
-$this->pageCaption='Crear '. Institucion::classNameLabel();
+$this->pageCaption='Crear Presupuesto';
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
-$this->pageDescription='Crear nuevo '.Institucion::classNameLabel();
+$this->pageDescription='Crear nuevo presupuesto';
 $this->breadcrumbs=array(
 	Institucion::classNameLabel()=>array('index'),
 	'Crear',

@@ -24,3 +24,331 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/jap/index.php/institucion/crear
 ---
+2012/09/16 07:42:04 [error] [exception.CException] exception 'CException' with message 'Propiedad "Usuario"."tipoUsuario" no se encuentra definida.' in /Users/rzamarripa/Dropbox/sites/yii/framework/base/CComponent.php:131
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/db/ar/CActiveRecord.php(150): CComponent->__get('tipoUsuario')
+#1 /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php(33): CActiveRecord->__get('tipoUsuario')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#4 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#5 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('')
+#7 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#8 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#9 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/jap/index.php
+HTTP_REFERER=http://localhost/jap/index.php/site/login
+---
+2012/09/16 07:45:36 [error] [exception.CException] exception 'CException' with message 'Propiedad "Usuario"."nombre" no se encuentra definida.' in /Users/rzamarripa/Dropbox/sites/yii/framework/base/CComponent.php:131
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/db/ar/CActiveRecord.php(150): CComponent->__get('nombre')
+#1 /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php(34): CActiveRecord->__get('nombre')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#4 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#5 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('')
+#7 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#8 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#9 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/jap/index.php
+HTTP_REFERER=http://localhost/jap/index.php/site/login
+---
+2012/09/16 07:51:28 [error] [exception.CException] exception 'CException' with message 'SiteController and its behaviors do not have a method or closure named "rendirect".' in /Users/rzamarripa/Dropbox/sites/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 [internal function]: CComponent->__call('rendirect', Array)
+#1 /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php(35): SiteController->rendirect('institucion', Array)
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#4 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#5 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('')
+#7 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#8 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#9 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/jap/index.php
+HTTP_REFERER=http://localhost/jap/index.php/site/login
+---
+2012/09/16 07:53:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "institucion" solicitada.' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php:484
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(271): CController->missingAction('institucion')
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('institucion')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/institucio...')
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jap/index.php/site/institucion?inst=Padres+y+Compadres
+---
+2012/09/16 07:53:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "institucion" solicitada.' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php:484
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(271): CController->missingAction('institucion')
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('institucion')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/institucio...')
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jap/index.php/site/institucion?inst=Padres+y+Compadres
+---
+2012/09/16 07:53:50 [error] [php] strpos() expects parameter 1 to be string, array given (/Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php:707)
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(587): CTheme->getViewFile()
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(868): SiteController->getViewFile()
+#2 /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php(35): SiteController->renderPartial()
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#4 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#5 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(287): SiteController->runAction()
+#6 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#7 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#8 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#9 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#10 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CWebApplication->run()
+REQUEST_URI=/jap/
+in /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php (35)
+in /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php (13)
+2012/09/16 07:54:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "institucion" solicitada.' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php:484
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(271): CController->missingAction('institucion')
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('institucion')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/institucio...')
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jap/index.php/site/institucion?inst=Padres+y+Compadres
+---
+2012/09/16 07:55:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "institucion" solicitada.' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php:484
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(271): CController->missingAction('institucion')
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('institucion')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/institucio...')
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jap/index.php/site/institucion?inst=Padres+y+Compadres
+---
+2012/09/16 07:55:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "institucion" solicitada.' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php:484
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(271): CController->missingAction('institucion')
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('institucion')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/institucio...')
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jap/index.php/site/institucion?inst=Padres+y+Compadres
+---
+2012/09/16 07:57:49 [error] [exception.CException] exception 'CException' with message 'Usuario and its behaviors do not have a method or closure named "getUsuario".' in /Users/rzamarripa/Dropbox/sites/yii/framework/base/CComponent.php:266
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/db/ar/CActiveRecord.php(240): CComponent->__call('getUsuario', Array)
+#1 [internal function]: CActiveRecord->__call('getUsuario', Array)
+#2 /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php(34): Usuario->getUsuario('inst')
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#4 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#5 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#6 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('')
+#8 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#9 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#10 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/jap/
+---
+2012/09/16 07:58:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "institucion" solicitada.' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php:484
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(271): CController->missingAction('institucion')
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('institucion')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/institucio...')
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jap/index.php/site/institucion
+---
+2012/09/16 08:05:06 [error] [php] htmlspecialchars() expects parameter 1 to be string, array given (/Users/rzamarripa/Dropbox/sites/yii/framework/web/helpers/CHtml.php:85)
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/helpers/CHtml.php(140): renderAttributes()
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/web/helpers/CHtml.php(436): tag()
+#2 /Users/rzamarripa/Dropbox/sites/htdocs/jap/themes/bootstrap/views/site/institucion.php(12): button()
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CBaseController.php(127): require()
+#4 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CBaseController.php(96): SiteController->renderInternal()
+#5 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(870): SiteController->renderFile()
+#6 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(783): SiteController->renderPartial()
+#7 /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php(38): SiteController->render()
+#8 /Users/rzamarripa/Dropbox/sites/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#9 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#10 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(287): SiteController->runAction()
+#11 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#12 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#13 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#14 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CWebApplication->run()
+REQUEST_URI=/jap/
+in /Users/rzamarripa/Dropbox/sites/htdocs/jap/themes/bootstrap/views/site/institucion.php (12)
+in /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php (38)
+in /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php (13)
+2012/09/16 08:10:14 [error] [php] htmlspecialchars() expects parameter 1 to be string, array given (/Users/rzamarripa/Dropbox/sites/yii/framework/web/helpers/CHtml.php:85)
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/helpers/CHtml.php(140): renderAttributes()
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/web/helpers/CHtml.php(436): tag()
+#2 /Users/rzamarripa/Dropbox/sites/htdocs/jap/themes/bootstrap/views/site/institucion.php(12): button()
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CBaseController.php(127): require()
+#4 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CBaseController.php(96): SiteController->renderInternal()
+#5 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(870): SiteController->renderFile()
+#6 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(783): SiteController->renderPartial()
+#7 /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php(38): SiteController->render()
+#8 /Users/rzamarripa/Dropbox/sites/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#9 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#10 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(287): SiteController->runAction()
+#11 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#12 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#13 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#14 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CWebApplication->run()
+REQUEST_URI=/jap/
+in /Users/rzamarripa/Dropbox/sites/htdocs/jap/themes/bootstrap/views/site/institucion.php (12)
+in /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php (38)
+in /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php (13)
+2012/09/16 08:10:15 [error] [php] htmlspecialchars() expects parameter 1 to be string, array given (/Users/rzamarripa/Dropbox/sites/yii/framework/web/helpers/CHtml.php:85)
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/helpers/CHtml.php(140): renderAttributes()
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/web/helpers/CHtml.php(436): tag()
+#2 /Users/rzamarripa/Dropbox/sites/htdocs/jap/themes/bootstrap/views/site/institucion.php(12): button()
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CBaseController.php(127): require()
+#4 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CBaseController.php(96): SiteController->renderInternal()
+#5 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(870): SiteController->renderFile()
+#6 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(783): SiteController->renderPartial()
+#7 /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php(38): SiteController->render()
+#8 /Users/rzamarripa/Dropbox/sites/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#9 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#10 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(287): SiteController->runAction()
+#11 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#12 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#13 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#14 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#15 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CWebApplication->run()
+REQUEST_URI=/jap/
+in /Users/rzamarripa/Dropbox/sites/htdocs/jap/themes/bootstrap/views/site/institucion.php (12)
+in /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php (38)
+in /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php (13)
+2012/09/16 08:13:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "controller/action"' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('controller/acti...')
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/jap/index.php/controller/action
+HTTP_REFERER=http://localhost/jap/
+---
+2012/09/16 08:13:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "controller/action"' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('controller/acti...')
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/jap/index.php/controller/action
+HTTP_REFERER=http://localhost/jap/
+---
+2012/09/16 08:13:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'No es posible resolver la solicitud "controller/action"' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('controller/acti...')
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/jap/index.php/controller/action
+HTTP_REFERER=http://localhost/jap/
+---
+2012/09/16 08:13:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "crear" solicitada.' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php:484
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(271): CController->missingAction('crear')
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('crear')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/crear')
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jap/index.php/site/crear
+HTTP_REFERER=http://localhost/jap/index.php
+---
+2012/09/16 08:14:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "crear" solicitada.' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php:484
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(271): CController->missingAction('crear')
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('crear')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/crear')
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jap/index.php/site/crear
+HTTP_REFERER=http://localhost/jap/
+---
+2012/09/16 08:14:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "crear" solicitada.' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php:484
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(271): CController->missingAction('crear')
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('crear')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/crear')
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jap/index.php/site/crear
+HTTP_REFERER=http://localhost/jap/
+---
+2012/09/16 08:14:54 [error] [exception.CException] exception 'CException' with message 'SiteController no ha podido encontrar la vista "crear" solicitada.' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php:879
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(783): CController->renderPartial('crear', NULL, true)
+#1 /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php(38): CController->render('crear')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#4 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#5 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('')
+#7 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#8 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#9 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/jap/
+---
+2012/09/16 08:14:55 [error] [exception.CException] exception 'CException' with message 'SiteController no ha podido encontrar la vista "crear" solicitada.' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php:879
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(783): CController->renderPartial('crear', NULL, true)
+#1 /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php(38): CController->render('crear')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#4 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#5 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('')
+#7 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#8 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#9 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/jap/
+HTTP_REFERER=http://localhost/jap/
+---
+2012/09/16 08:15:13 [error] [exception.CException] exception 'CException' with message 'SiteController no ha podido encontrar la vista "institucion/crear" solicitada.' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php:879
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(783): CController->renderPartial('institucion/cre...', NULL, true)
+#1 /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php(38): CController->render('institucion/cre...')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#4 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#5 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('')
+#7 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#8 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#9 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/jap/
+---
+2012/09/16 08:15:14 [error] [exception.CException] exception 'CException' with message 'SiteController no ha podido encontrar la vista "institucion/crear" solicitada.' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php:879
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(783): CController->renderPartial('institucion/cre...', NULL, true)
+#1 /Users/rzamarripa/Dropbox/sites/htdocs/jap/protected/controllers/SiteController.php(38): CController->render('institucion/cre...')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#4 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#5 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('')
+#7 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#8 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#9 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/jap/
+HTTP_REFERER=http://localhost/jap/
+---

@@ -29,7 +29,19 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$usuarioActual = Usuario::model()->find('usuario=:x',array(':x'=>Yii::app()->user->name));
+		
+		if(isset($usuarioActual) && $usuarioActual->tipousuario->nombre == 'Administrador'){
+			$this->render('index');
+		}
+		elseif(isset($usuarioActual) && $usuarioActual->tipousuario->nombre == 'Institucion'){
+			$this->render('institucion');
+		}		
+		else
+		{
+			$this->render('index');
+		}
+
 	}
 
 	/**

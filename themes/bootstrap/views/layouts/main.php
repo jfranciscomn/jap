@@ -50,7 +50,8 @@
 										array('label'=>'Estatus', 'url'=>array('/estatus/index')),
 										array('label'=>'Gasto de Administración', 'url'=>array('/gastodeadministracion/index')),
 										array('label'=>'Gasto Operativo', 'url'=>array('/gastooperativo/index')),
-										array('label'=>'Ingreso Por Cuotas de Recuperación', 'url'=>array('/ingresoporcuotasderecuperacion/index')),
+										array('label'=>'Ingreso Por Cuotas de Recuperación', 
+										'url'=>array('/ingresoporcuotasderecuperacion/index')),
 										array('label'=>'Ingreso Por Donativo', 'url'=>array('/ingresopordonativo/index')),
 										array('label'=>'Ingreso Por Evento', 'url'=>array('/ingresoporevento/index')),
 										array('label'=>'Ingreso Por Venta', 'url'=>array('/ingresoporventa/index')),
@@ -67,9 +68,9 @@
 								array('label'=>'Contacto', 'url'=>array('/site/contact')),
 						);
 					}
-					elseif(isset($usuarioActual) && $usuarioActual->tipousuario->nombre == 'Maestro'){
+					elseif(isset($usuarioActual) && $usuarioActual->tipousuario->nombre == 'Institucion'){
 						$items=array(
-							array('label'=>'Mis Materias', 'url'=>array('/site/index')),
+							array('label'=>'Crear Presupuesto', 'url'=>array('/institucion/crear')),
 							array('label'=>'Acerca de', 'url'=>array('/site/page', 'view'=>'about')),
 							array('label'=>'Contacto', 'url'=>array('/site/contact')),
 						);
