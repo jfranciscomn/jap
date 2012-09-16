@@ -1,0 +1,26 @@
+2012/09/16 01:44:16 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'Usted no se encuentra autorizado a realizar esta acción.' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/auth/CAccessControlFilter.php:168
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/auth/CAccessControlFilter.php(131): CAccessControlFilter->accessDenied(Object(CWebUser), 'Usted no se enc...')
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/web/filters/CFilter.php(39): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/rzamarripa/Dropbox/sites/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(292): CFilterChain->run()
+#6 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('presupuesto')
+#8 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('institucion/pre...')
+#9 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#10 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/jap/index.php/institucion/presupuesto
+---
+2012/09/16 01:44:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'El sistema no ha podido encontrar la acción "crear" solicitada.' in /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php:484
+Stack trace:
+#0 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CController.php(271): CController->missingAction('crear')
+#1 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(276): CController->run('crear')
+#2 /Users/rzamarripa/Dropbox/sites/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('institucion/cre...')
+#3 /Users/rzamarripa/Dropbox/sites/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /Users/rzamarripa/Dropbox/sites/htdocs/jap/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/jap/index.php/institucion/crear
+---

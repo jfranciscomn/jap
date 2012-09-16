@@ -61,7 +61,8 @@
 										array('label'=>'Usuario', 'url'=>array('/usuario/index')),
 									),
 									'visible'=>!Yii::app()->user->isGuest
-								),								
+								),				
+								array('label'=>'Presupuesto', 'url'=>array('institucion/crear')),			
 								array('label'=>'Acerca de', 'url'=>array('/site/page', 'view'=>'about')),
 								array('label'=>'Contacto', 'url'=>array('/site/contact')),
 						);

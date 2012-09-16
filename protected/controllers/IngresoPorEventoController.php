@@ -1,6 +1,6 @@
 <?php
 
-class InstitucionController extends Controller
+class IngresoPorEventoController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -31,7 +31,7 @@ class InstitucionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view','create','update','admin','delete','dynamicList','crear'),
+				'actions'=>array('index','view','create','update','admin','delete','dynamicList'),
 				'users'=>array('@'),
 			),
 			/*
@@ -62,14 +62,14 @@ class InstitucionController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Institucion;
+		$model=new IngresoPorEvento;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Institucion']))
+		if(isset($_POST['IngresoPorEvento']))
 		{
-			$model->attributes=$_POST['Institucion'];
+			$model->attributes=$_POST['IngresoPorEvento'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -77,52 +77,6 @@ class InstitucionController extends Controller
 		$this->render('create',array(
 			'model'=>$model,
 		));
-	}
-	
-	public function actionCrear()
-	{
-		$modelDonativo=new IngresoPorDonativo;
-		$modelIngresoPorCuotasDeRecuperacion = new IngresoPorCuotasdeRecuperacion;
-		$modelIngresoPorEvento = new IngresoPorEvento;
-		$modelIngresoPorVenta = new IngresoPorVenta;
-		$modelGastoDeAdministracion = new GastoDeAdministracion;
-		$modelGastoOperativo = new GastoOperativo;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['IngresoPorDonativo']) && 
-			isset($_POST['IngresoPorCuotasdeRecuperacion']) && 
-			isset($_POST['IngresoPorEvento']) &&
-			isset($_POST['IngresoPorVenta']) &&
-			isset($_POST['GastoDeAdministracion']) &&
-			isset($_POST['GastoOperativo'])) 
-		{
-			$modelDonativo->attributes=$_POST['IngresoPorDonativo'];
-			$modelIngresoPorCuotasDeRecuperacion->attributes=$_POST['IngresoPorCuotasdeRecuperacion'];
-			$modelIngresoPorEvento->attributes = $_POST['IngresoPorEvento'];
-			$modelIngresoPorVenta->attributes = $_POST['IngresoPorVenta'];
-			$modelGastoDeAdministracion->attributes = $_POST['GastoDeAdministracion'];
-			$modelGastoOperativo->attributes = $_POST['GastoOperativo'];
-			if($modelDonativo->save() && 
-				$modelIngresoPorCuotasDeRecuperacion->save() && 
-				$modelIngresoPorEvento->save() &&
-				$modelIngresoPorVenta->save() &&
-				$modelGastoDeAdministracion->save() &&
-				$modelGastoOperativo->save()
-			)
-				$this->redirect(array('view','id'=>$model->id));
-		}
-
-		$this->render('crear',array(
-			'modelDonativo'=>$modelDonativo,
-			'modelIngresoPorCuotasDeRecuperacion'=>$modelIngresoPorCuotasDeRecuperacion,
-			'modelIngresoPorEvento'=>$modelIngresoPorEvento,
-			'modelIngresoPorVenta'=>$modelIngresoPorVenta,
-			'modelGastoDeAdministracion'=>$modelGastoDeAdministracion,
-			'modelGastoOperativo'=>$modelGastoOperativo,
-		));
-
 	}
 
 	/**
@@ -137,9 +91,9 @@ class InstitucionController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Institucion']))
+		if(isset($_POST['IngresoPorEvento']))
 		{
-			$model->attributes=$_POST['Institucion'];
+			$model->attributes=$_POST['IngresoPorEvento'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -174,7 +128,7 @@ class InstitucionController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Institucion');
+		$dataProvider=new CActiveDataProvider('IngresoPorEvento');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -185,10 +139,10 @@ class InstitucionController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Institucion('search');
+		$model=new IngresoPorEvento('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Institucion']))
-			$model->attributes=$_GET['Institucion'];
+		if(isset($_GET['IngresoPorEvento']))
+			$model->attributes=$_GET['IngresoPorEvento'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -202,7 +156,7 @@ class InstitucionController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Institucion::model()->findByPk((int)$id);
+		$model=IngresoPorEvento::model()->findByPk((int)$id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -214,7 +168,7 @@ class InstitucionController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='institucion-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='ingreso-por-evento-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
@@ -233,7 +187,7 @@ class InstitucionController extends Controller
 			$criteria->condition="lower(CONCAT_WS(' ',nombre)) like lower(:nombre) ";
 			$criteria->params=array(':nombre'=>$q);
 			$criteria->limit='10';
-	       	$cursor = Institucion::model()->findAll($criteria);
+	       	$cursor = IngresoPorEvento::model()->findAll($criteria);
 			foreach ($cursor as $valor)	
 				$result[]=Array('label' => $valor->nombre,  
 				                'value' => $valor->nombre,
@@ -246,19 +200,19 @@ class InstitucionController extends Controller
 	
 	public function actionDynamicList()
 	{
-		echo CHtml::tag('option',array(),CHtml::encode('Seleccione un Institucion'),true);
+		echo CHtml::tag('option',array(),CHtml::encode('Seleccione un IngresoPorEvento'),true);
 		if(Yii::app()->request->isAjaxRequest  )
 		{
 			$criteria=new CDbCriteria;
 			
-			$model = new Institucion;
+			$model = new IngresoPorEvento;
 			$relations =$model->relations();
 			
 			$bandera =false;
 			
 			foreach($relations as $nombre=>$relacion)
 			{
-				if( $relacion[0]==Institucion::BELONGS_TO && isset($_POST[$relacion[2]]) && !empty($_POST[$relacion[2]]) )
+				if( $relacion[0]==IngresoPorEvento::BELONGS_TO && isset($_POST[$relacion[2]]) && !empty($_POST[$relacion[2]]) )
 				{
 					$criteria->compare($relacion[2],$_POST[$relacion[2]]);
 					$bandera = true;
@@ -267,7 +221,7 @@ class InstitucionController extends Controller
 			$criteria->order='nombre';
 			
 			if($bandera)
-				$data=CHtml::listData(Institucion::model()->findAll($criteria), 'id', 'nombre');
+				$data=CHtml::listData(IngresoPorEvento::model()->findAll($criteria), 'id', 'nombre');
 			else
 				$data=array();
 			foreach($data as $value=>$name)
