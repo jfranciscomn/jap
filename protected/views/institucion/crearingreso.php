@@ -1,16 +1,14 @@
 <?php
-$this->pageCaption='Crear Presupuesto';
+$this->pageCaption='Crear Presupuesto Ingreso';
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
-$this->pageDescription='Crear nuevo presupuesto';
+$this->pageDescription='';
 $this->breadcrumbs=array(
-	Institucion::classNameLabel()=>array('index'),
 	'Crear',
 );
 
-$this->menu=array(
-	array('label'=>'Listar '.Institucion::classNameLabel(), 'url'=>array('index')),
-	array('label'=>'Administrar '.Institucion::classNameLabel(), 'url'=>array('admin')),
-);
+	$this->menu=array(
+		array('label'=>'Volver ', 'url'=>array('site/index')),
+	);
 ?>
 
 

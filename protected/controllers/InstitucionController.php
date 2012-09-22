@@ -154,7 +154,7 @@ class InstitucionController extends Controller
 			if(	$modelGastoDeAdministracion->save() &&
 				$modelGastoOperativo->save()
 			)
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('termino','que'=>'Egreso'));
 		}
 
 		$this->render('crearegreso',array(

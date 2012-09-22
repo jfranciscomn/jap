@@ -1,20 +1,20 @@
 <?php
-$this->pageCaption='Crear Presupuesto';
-$this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
-$this->pageDescription='Crear nuevo presupuesto';
-$this->breadcrumbs=array(
-	Institucion::classNameLabel()=>array('index'),
-	'Crear',
-);
+	$this->pageCaption='Crear Presupuesto Egreso';
+	$this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
+	$this->pageDescription='';
+	$this->breadcrumbs=array(
+		'Crear',
+	);
 
-$this->menu=array(
-	array('label'=>'Listar '.Institucion::classNameLabel(), 'url'=>array('index')),
-	array('label'=>'Administrar '.Institucion::classNameLabel(), 'url'=>array('admin')),
-);
+	$this->menu=array(
+		array('label'=>'Volver ', 'url'=>array('site/index')),
+	);
 ?>
 
 
-<?php echo $this->renderPartial('_presupuestoegreso', array(
-'modelGastoDeAdministracion'=>$modelGastoDeAdministracion,
-'modelGastoOperativo'=>$modelGastoOperativo,
-)); ?>
+<?php 
+	echo $this->renderPartial('_presupuestoegreso', array(
+			'modelGastoDeAdministracion'=>$modelGastoDeAdministracion,
+			'modelGastoOperativo'=>$modelGastoOperativo,
+		)); 
+?>

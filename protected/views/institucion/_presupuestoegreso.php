@@ -156,7 +156,7 @@
 		</div>	
 			
 		<div class="actions">
-			<?php echo BHtml::submitButton($modelGastoOperativo->isNewRecord ? 'Crear' : 'Guardar'); ?>
+				<?php echo BHtml::submitButton('Mandar Presupuesto Egreso'); ?>
 		</div>
 	
 		<?php $this->endWidget(); ?>

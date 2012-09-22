@@ -12,5 +12,5 @@
 	);
 	
 	$this->menu=array(
-		array('label'=>'Volver ', 'url'=>array('index')),
+		array('label'=>'Volver ', 'url'=>array('site/index')),
 	);
