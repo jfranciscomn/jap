@@ -1,7 +1,7 @@
 <?php
-$this->pageCaption='Login';
+$this->pageCaption='Iniciar sesión';
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
-$this->pageDescription="You've been here before, haven't you?";
+$this->pageDescription="para hacer tus presupuestos?";
 $this->breadcrumbs=array(
 	'Login',
 );
@@ -19,7 +19,7 @@ $this->breadcrumbs=array(
 )); ?>
 
 	<?php $this->widget('BAlert',array(
-		'content'=>'<p>Fields with <span class="required">*</span> are required.</p>',
+		'content'=>'<p>Campos con <span class="required">*</span> son requeridos.</p>',
 	)); ?>
 
 	<div class="<?php echo $form->fieldClass($model, 'username'); ?>">

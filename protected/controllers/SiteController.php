@@ -35,7 +35,7 @@ class SiteController extends Controller
 			$this->render('index');
 		}
 		elseif(isset($usuarioActual) && $usuarioActual->tipousuario->nombre == 'Institucion'){
-			$this->render('institucion');
+			$this->redirect(array('institucion/acciones'));
 		}		
 		else
 		{
@@ -112,4 +112,6 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+	
+	
 }

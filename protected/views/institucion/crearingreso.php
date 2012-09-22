@@ -14,11 +14,8 @@ $this->menu=array(
 ?>
 
 
-<?php echo $this->renderPartial('_presupuesto', array(
+<?php echo $this->renderPartial('_presupuestoingreso', array(
 'modelDonativo'=>$modelDonativo,
 'modelIngresoPorCuotasDeRecuperacion'=>$modelIngresoPorCuotasDeRecuperacion,
 'modelIngresoPorEvento'=>$modelIngresoPorEvento,
-'modelIngresoPorVenta'=>$modelIngresoPorVenta,
-'modelGastoDeAdministracion'=>$modelGastoDeAdministracion,
-'modelGastoOperativo'=>$modelGastoOperativo,
 )); ?>

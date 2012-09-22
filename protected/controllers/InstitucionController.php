@@ -31,7 +31,7 @@ class InstitucionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view','create','update','admin','delete','dynamicList','crear'),
+				'actions'=>array('index','view','create','update','admin','delete','dynamicList','crearingreso','crearegreso','acciones','termino'),
 				'users'=>array('@'),
 			),
 			/*
@@ -79,46 +79,85 @@ class InstitucionController extends Controller
 		));
 	}
 	
-	public function actionCrear()
+	public function actionCrearingreso()
 	{
+		$usuarioActual = Usuario::model()->find('usuario=:x',array(':x'=>Yii::app()->user->name));
+		$ejercicioFiscal = EjercicioFiscal::model()->find('estatus_did=1');
+		
 		$modelDonativo=new IngresoPorDonativo;
 		$modelIngresoPorCuotasDeRecuperacion = new IngresoPorCuotasdeRecuperacion;
 		$modelIngresoPorEvento = new IngresoPorEvento;
-		$modelIngresoPorVenta = new IngresoPorVenta;
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['IngresoPorDonativo'],$_POST['IngresoPorCuotasdeRecuperacion'],$_POST['IngresoPorEvento']))			
+		{
+			$modelDonativo->attributes=$_POST['IngresoPorDonativo'];
+			$modelIngresoPorCuotasDeRecuperacion->attributes=$_POST['IngresoPorCuotasdeRecuperacion'];
+			$modelIngresoPorEvento->attributes = $_POST['IngresoPorEvento'];
+			$modelIngresoPorVenta->attributes = $_POST['IngresoPorVenta'];
+			
+			$modelDonativo->institucion_aid = $usuarioActual->institucion->id;
+			$modelDonativo->ejercicioFiscal_did = $ejercicioFiscal->id;
+			$modelDonativo->estatus_did = 1;
+			$modelDonativo->editable = 1;
+			$modelDonativo->ultimaModificacion_dt = date("Y-m-d H:i:s");
+			
+			$modelIngresoPorCuotasDeRecuperacion->institucion_aid = $usuarioActual->institucion->id;
+			$modelIngresoPorCuotasDeRecuperacion->ejercicioFiscal_did = $ejercicioFiscal->id;
+			$modelIngresoPorCuotasDeRecuperacion->estatus_did = 1;
+			$modelIngresoPorCuotasDeRecuperacion->editable = 1;
+			$modelIngresoPorCuotasDeRecuperacion->ultimaModificacion_dt = date("Y-m-d H:i:s");
+			
+			$modelIngresoPorEvento->institucion_aid = $usuarioActual->institucion->id;
+			$modelIngresoPorEvento->ejercicioFiscal_did = $ejercicioFiscal->id;
+			$modelIngresoPorEvento->estatus_did = 1;
+			$modelIngresoPorEvento->editable = 1;
+			$modelIngresoPorEvento->ultimaModificacion_dt = date("Y-m-d H:i:s");
+			
+			$valido = $modelDonativo->validate();
+			$valido = $modelIngresoPorCuotasDeRecuperacion->validate();
+			$valido = $modelIngresoPorEvento->validate();			
+			
+			if($valido)
+			{
+				if(
+					$modelDonativo->save() && 
+					$modelIngresoPorCuotasDeRecuperacion->save() && 
+					$modelIngresoPorEvento->save()
+				)
+					$this->redirect(array('termino','que'=>'Ingreso'));
+			}			
+		}
+
+		$this->render('crearingreso',array(
+			'modelDonativo'=>$modelDonativo,
+			'modelIngresoPorCuotasDeRecuperacion'=>$modelIngresoPorCuotasDeRecuperacion,
+			'modelIngresoPorEvento'=>$modelIngresoPorEvento,			
+		));
+	}
+	
+	public function actionCrearegreso()
+	{
 		$modelGastoDeAdministracion = new GastoDeAdministracion;
 		$modelGastoOperativo = new GastoOperativo;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['IngresoPorDonativo']) && 
-			isset($_POST['IngresoPorCuotasdeRecuperacion']) && 
-			isset($_POST['IngresoPorEvento']) &&
-			isset($_POST['IngresoPorVenta']) &&
-			isset($_POST['GastoDeAdministracion']) &&
+		if(	isset($_POST['GastoDeAdministracion']) &&
 			isset($_POST['GastoOperativo'])) 
 		{
-			$modelDonativo->attributes=$_POST['IngresoPorDonativo'];
-			$modelIngresoPorCuotasDeRecuperacion->attributes=$_POST['IngresoPorCuotasdeRecuperacion'];
-			$modelIngresoPorEvento->attributes = $_POST['IngresoPorEvento'];
-			$modelIngresoPorVenta->attributes = $_POST['IngresoPorVenta'];
 			$modelGastoDeAdministracion->attributes = $_POST['GastoDeAdministracion'];
 			$modelGastoOperativo->attributes = $_POST['GastoOperativo'];
-			if($modelDonativo->save() && 
-				$modelIngresoPorCuotasDeRecuperacion->save() && 
-				$modelIngresoPorEvento->save() &&
-				$modelIngresoPorVenta->save() &&
-				$modelGastoDeAdministracion->save() &&
+			if(	$modelGastoDeAdministracion->save() &&
 				$modelGastoOperativo->save()
 			)
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
-		$this->render('crear',array(
-			'modelDonativo'=>$modelDonativo,
-			'modelIngresoPorCuotasDeRecuperacion'=>$modelIngresoPorCuotasDeRecuperacion,
-			'modelIngresoPorEvento'=>$modelIngresoPorEvento,
-			'modelIngresoPorVenta'=>$modelIngresoPorVenta,
+		$this->render('crearegreso',array(
 			'modelGastoDeAdministracion'=>$modelGastoDeAdministracion,
 			'modelGastoOperativo'=>$modelGastoOperativo,
 		));
@@ -277,5 +316,15 @@ class InstitucionController extends Controller
 			}
 			
 		}
+	}
+	
+	public function actionAcciones()
+	{
+		$this->render('acciones',array());
+	}
+	
+	public function actiontermino()
+	{
+		$this->render('termino',array());
 	}
 }
