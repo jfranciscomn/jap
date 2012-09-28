@@ -1,13 +1,11 @@
 <?php
-$this->pageCaption='Iniciar sesión';
+$this->pageCaption='Iniciar Sesión';
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
-$this->pageDescription="para hacer tus presupuestos?";
+$this->pageDescription="en el sistema de Presupuesto de las IAP";
 $this->breadcrumbs=array(
-	'Login',
+	'Iniciar Sesión',
 );
 ?>
-
-<p>Please fill out the following form with your login credentials:</p>
 
 <div class="form">
 <?php $form=$this->beginWidget('BActiveForm', array(
@@ -21,7 +19,7 @@ $this->breadcrumbs=array(
 	<?php $this->widget('BAlert',array(
 		'content'=>'<p>Campos con <span class="required">*</span> son requeridos.</p>',
 	)); ?>
-
+	
 	<div class="<?php echo $form->fieldClass($model, 'username'); ?>">
 		<?php echo $form->labelEx($model,'username'); ?>
 		<div class="controls">
@@ -35,9 +33,6 @@ $this->breadcrumbs=array(
 		<div class="controls">
 			<?php echo $form->passwordField($model,'password'); ?>
 			<?php echo $form->error($model,'password'); ?>
-			<span class="help-block">
-				Hint: You may login with <tt>demo/demo</tt> or <tt>admin/admin</tt>.
-			</span>
 		</div>
 	</div>
 
@@ -49,7 +44,7 @@ $this->breadcrumbs=array(
 	</div>
 
 	<div class="form-actions">
-		<?php echo BHtml::submitButton('Login'); ?>
+		<?php echo BHtml::submitButton('Iniciar Sesión'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

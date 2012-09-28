@@ -31,7 +31,24 @@ class InstitucionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index','view','create','update','admin','delete','dynamicList','crearingreso','crearegreso','acciones','termino'),
+				'actions'=>array('index',
+					'view',
+					'create',
+					'update',
+					'admin',
+					'delete',
+					'dynamicList',
+					'crearingreso',
+					'crearegreso',
+					'acciones',
+					'termino',
+					'actualizaringreso',
+					'actualizaregreso',
+					'reportes',
+					'reportepresupuesto',
+					'crearinversion',
+					'actualizarinversion',
+				),
 				'users'=>array('@'),
 			),
 			/*
@@ -96,7 +113,6 @@ class InstitucionController extends Controller
 			$modelDonativo->attributes=$_POST['IngresoPorDonativo'];
 			$modelIngresoPorCuotasDeRecuperacion->attributes=$_POST['IngresoPorCuotasdeRecuperacion'];
 			$modelIngresoPorEvento->attributes = $_POST['IngresoPorEvento'];
-			$modelIngresoPorVenta->attributes = $_POST['IngresoPorVenta'];
 			
 			$modelDonativo->institucion_aid = $usuarioActual->institucion->id;
 			$modelDonativo->ejercicioFiscal_did = $ejercicioFiscal->id;
@@ -127,7 +143,7 @@ class InstitucionController extends Controller
 					$modelIngresoPorCuotasDeRecuperacion->save() && 
 					$modelIngresoPorEvento->save()
 				)
-					$this->redirect(array('termino','que'=>'Ingreso'));
+					$this->redirect(array('termino','que'=>'Ingreso','ac'=>'crear'));
 			}			
 		}
 
@@ -140,6 +156,9 @@ class InstitucionController extends Controller
 	
 	public function actionCrearegreso()
 	{
+		$usuarioActual = Usuario::model()->find('usuario=:x',array(':x'=>Yii::app()->user->name));
+		$ejercicioFiscal = EjercicioFiscal::model()->find('estatus_did=1');
+		
 		$modelGastoDeAdministracion = new GastoDeAdministracion;
 		$modelGastoOperativo = new GastoOperativo;
 
@@ -151,10 +170,23 @@ class InstitucionController extends Controller
 		{
 			$modelGastoDeAdministracion->attributes = $_POST['GastoDeAdministracion'];
 			$modelGastoOperativo->attributes = $_POST['GastoOperativo'];
+			
+			$modelGastoDeAdministracion->institucion_aid = $usuarioActual->institucion->id;
+			$modelGastoDeAdministracion->ejercicioFiscal_did = $ejercicioFiscal->id;
+			$modelGastoDeAdministracion->estatus_did = 1;
+			$modelGastoDeAdministracion->editable = 1;
+			$modelGastoDeAdministracion->ultimaModificacion_dt = date("Y-m-d H:i:s");
+			
+			$modelGastoOperativo->institucion_aid = $usuarioActual->institucion->id;
+			$modelGastoOperativo->ejercicioFiscal_did = $ejercicioFiscal->id;
+			$modelGastoOperativo->estatus_did = 1;
+			$modelGastoOperativo->editable = 1;
+			$modelGastoOperativo->ultimaModificacion_dt = date("Y-m-d H:i:s");
+			
 			if(	$modelGastoDeAdministracion->save() &&
 				$modelGastoOperativo->save()
 			)
-				$this->redirect(array('termino','que'=>'Egreso'));
+				$this->redirect(array('termino','que'=>'Egreso','ac'=>'crear'));
 		}
 
 		$this->render('crearegreso',array(
@@ -163,6 +195,168 @@ class InstitucionController extends Controller
 		));
 
 	}
+	
+	public function actionCrearinversion()
+	{
+		$usuarioActual = Usuario::model()->find('usuario=:x',array(':x'=>Yii::app()->user->name));
+		$ejercicioFiscal = EjercicioFiscal::model()->find('estatus_did=1');
+		
+		$modelInversion=new Inversion;
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['Inversion']))			
+		{
+			$modelInversion->attributes=$_POST['Inversion'];
+			
+			$modelInversion->institucion_aid = $usuarioActual->institucion->id;
+			$modelInversion->ejercicio_did = $ejercicioFiscal->id;
+			$modelInversion->estatus_did = 1;
+			$modelInversion->editable = 1;
+			$modelInversion->ultimaModificacion_dt = date("Y-m-d H:i:s");
+			
+			$valido = $modelInversion->validate();
+			
+			if($valido)
+			{
+				if(
+					$modelInversion->save()
+				)
+					$this->redirect(array('termino','que'=>'Inversion','ac'=>'crear'));
+			}			
+		}
+
+		$this->render('crearinversion',array(
+			'modelInversion'=>$modelInversion,
+		));
+	}
+
+	
+	public function actionActualizaringreso()
+	{
+		$usuarioActual = Usuario::model()->find('usuario=:x',array(':x'=>Yii::app()->user->name));
+		$ejercicioFiscal = EjercicioFiscal::model()->find('estatus_did=1');
+		
+		$modelDonativo = IngresoPorDonativo::model()->find('institucion_aid=:donativo',
+			array('donativo'=>$usuarioActual->institucion_aid));
+					
+		$modelIngresoPorCuotasDeRecuperacion=IngresoPorCuotasDeRecuperacion::model()->find('institucion_aid=:donativo',
+			array('donativo'=>$usuarioActual->institucion_aid));
+			
+		$modelIngresoPorEvento = IngresoPorEvento::model()->find('institucion_aid=:donativo',
+			array('donativo'=>$usuarioActual->institucion_aid));
+			
+		if(isset($_POST['IngresoPorDonativo'],$_POST['IngresoPorCuotasdeRecuperacion'],$_POST['IngresoPorEvento']))			
+		{
+			$modelDonativo->attributes=$_POST['IngresoPorDonativo'];
+			$modelIngresoPorCuotasDeRecuperacion->attributes=$_POST['IngresoPorCuotasdeRecuperacion'];
+			$modelIngresoPorEvento->attributes = $_POST['IngresoPorEvento'];
+			
+			$modelDonativo->institucion_aid = $usuarioActual->institucion->id;
+			$modelDonativo->ejercicioFiscal_did = $ejercicioFiscal->id;
+			$modelDonativo->estatus_did = 1;
+			$modelDonativo->editable = 1;
+			$modelDonativo->ultimaModificacion_dt = date("Y-m-d H:i:s");
+			
+			$modelIngresoPorCuotasDeRecuperacion->institucion_aid = $usuarioActual->institucion->id;
+			$modelIngresoPorCuotasDeRecuperacion->ejercicioFiscal_did = $ejercicioFiscal->id;
+			$modelIngresoPorCuotasDeRecuperacion->estatus_did = 1;
+			$modelIngresoPorCuotasDeRecuperacion->editable = 1;
+			$modelIngresoPorCuotasDeRecuperacion->ultimaModificacion_dt = date("Y-m-d H:i:s");
+			
+			$modelIngresoPorEvento->institucion_aid = $usuarioActual->institucion->id;
+			$modelIngresoPorEvento->ejercicioFiscal_did = $ejercicioFiscal->id;
+			$modelIngresoPorEvento->estatus_did = 1;
+			$modelIngresoPorEvento->editable = 1;
+			$modelIngresoPorEvento->ultimaModificacion_dt = date("Y-m-d H:i:s");
+
+			
+			if($modelDonativo->save() && 
+				$modelIngresoPorCuotasDeRecuperacion->save() && 
+				$modelIngresoPorEvento->save()
+			)
+				$this->redirect(array('termino','que'=>'Ingreso','ac'=>'actualizar'));
+		}
+		
+		$this->render('crearingreso',array(
+			'modelDonativo'=>$modelDonativo,
+			'modelIngresoPorCuotasDeRecuperacion'=>$modelIngresoPorCuotasDeRecuperacion,
+			'modelIngresoPorEvento'=>$modelIngresoPorEvento,			
+		));
+
+	}
+	
+	public function actionActualizaregreso()
+	{
+		$usuarioActual = Usuario::model()->find('usuario=:x',array(':x'=>Yii::app()->user->name));
+		$ejercicioFiscal = EjercicioFiscal::model()->find('estatus_did=1');
+		
+		$modelGastoDeAdministracion = GastoDeAdministracion::model()->find('institucion_aid=:donativo',
+			array('donativo'=>$usuarioActual->institucion_aid));
+					
+		$modelGastoOperativo=GastoOperativo::model()->find('institucion_aid=:donativo',
+			array('donativo'=>$usuarioActual->institucion_aid));
+			
+		if(	isset($_POST['GastoDeAdministracion']) &&
+			isset($_POST['GastoOperativo'])) 
+		{
+			$modelGastoDeAdministracion->attributes = $_POST['GastoDeAdministracion'];
+			$modelGastoOperativo->attributes = $_POST['GastoOperativo'];
+			
+			$modelGastoDeAdministracion->institucion_aid = $usuarioActual->institucion->id;
+			$modelGastoDeAdministracion->ejercicioFiscal_did = $ejercicioFiscal->id;
+			$modelGastoDeAdministracion->estatus_did = 1;
+			$modelGastoDeAdministracion->editable = 1;
+			$modelGastoDeAdministracion->ultimaModificacion_dt = date("Y-m-d H:i:s");
+			
+			$modelGastoOperativo->institucion_aid = $usuarioActual->institucion->id;
+			$modelGastoOperativo->ejercicioFiscal_did = $ejercicioFiscal->id;
+			$modelGastoOperativo->estatus_did = 1;
+			$modelGastoOperativo->editable = 1;
+			$modelGastoOperativo->ultimaModificacion_dt = date("Y-m-d H:i:s");
+			
+			if(	$modelGastoDeAdministracion->save() &&
+				$modelGastoOperativo->save()
+			)
+				$this->redirect(array('termino','que'=>'Egreso','ac'=>'crear'));
+		}
+
+		$this->render('crearegreso',array(
+			'modelGastoDeAdministracion'=>$modelGastoDeAdministracion,
+			'modelGastoOperativo'=>$modelGastoOperativo,
+		));
+
+	}
+	
+	public function actionActualizarinversion()
+	{
+		$usuarioActual = Usuario::model()->find('usuario=:x',array(':x'=>Yii::app()->user->name));
+		$ejercicioFiscal = EjercicioFiscal::model()->find('estatus_did=1');
+		
+		$modelInversion = Inversion::model()->find('institucion_aid=:donativo',
+			array('donativo'=>$usuarioActual->institucion_aid));					
+					
+		if(isset($_POST['Inversion']))			
+		{
+			$modelInversion->attributes=$_POST['Inversion'];
+			
+			$modelInversion->institucion_aid = $usuarioActual->institucion->id;
+			$modelInversion->ejercicio_did = $ejercicioFiscal->id;
+			$modelInversion->estatus_did = 1;
+			$modelInversion->editable = 1;
+									
+			if($modelInversion->save()
+			)
+				$this->redirect(array('termino','que'=>'Inversión','ac'=>'actualizar'));
+		}
+		
+		$this->render('actualizarinversion',array(
+			'modelInversion'=>$modelInversion,			
+		));
+
+	}
+
 
 	/**
 	 * Updates a particular model.
@@ -285,7 +479,7 @@ class InstitucionController extends Controller
 	
 	public function actionDynamicList()
 	{
-		echo CHtml::tag('option',array(),CHtml::encode('Seleccione un Institucion'),true);
+		echo CHtml::tag('option',array(),CHtml::encode('Seleccione un Institución'),true);
 		if(Yii::app()->request->isAjaxRequest  )
 		{
 			$criteria=new CDbCriteria;
@@ -323,8 +517,19 @@ class InstitucionController extends Controller
 		$this->render('acciones',array());
 	}
 	
-	public function actiontermino()
+	public function actionTermino()
 	{
 		$this->render('termino',array());
+	}
+	
+	public function actionReportes()
+	{
+		$this->render('reportes',array());
+	}
+	
+	public function actionReportepresupuesto()
+	{
+		$this->layout="//layouts/pdf";
+		$this->render('reportepresupuesto',array());
 	}
 }

@@ -8,8 +8,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Listar '.TipoUsuario::classNameLabel(), 'url'=>array('index')),
-	array('label'=>'Crear '.TipoUsuario::classNameLabel(), 'url'=>array('create')),
+	array('label'=>'Listar Tipo Usuario', 'url'=>array('index')),
+	array('label'=>'Crear Tipo Usuario', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

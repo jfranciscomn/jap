@@ -72,7 +72,7 @@ class Institucion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nombre, siglas, domicioDireccion, domicilioCP, domicilioMunicipio_aid, fechaConstitucion_dt, rfc, donativoDeducible, donativoConvenio, ambito_did, areageografica_did, estatus_did', 'required'),
+			array('contactoTelefono, contactoEmail, nombre, siglas, domicioDireccion, domicilioCP, domicilioMunicipio_aid, fechaConstitucion_dt, rfc, donativoDeducible, donativoConvenio, ambito_did, areageografica_did, estatus_did', 'required'),
 			array('domicilioMunicipio_aid, donativoDeducible, donativoConvenio, ambito_did, areageografica_did, horasPromedio_trabajador, estatus_did', 'numerical', 'integerOnly'=>true),
 			array('nombre, domicioDireccion, contactoEmail', 'length', 'max'=>145),
 			array('siglas, domicilioCP, contactoTelefono, contactoFax, cluni', 'length', 'max'=>45),
@@ -171,22 +171,22 @@ class Institucion extends CActiveRecord
 			'id' => 'ID',
 			'nombre' => 'Nombre',
 			'siglas' => 'Siglas',
-			'mision' => 'Mision',
-			'vision' => 'Vision',
-			'domicioDireccion' => 'Domicio Direccion',
-			'domicilioCP' => 'Domicilio Cp',
-			'domicilioMunicipio_aid' => 'Domicilio Municipio',
-			'contactoTelefono' => 'Contacto Telefono',
-			'contactoFax' => 'Contacto Fax',
-			'contactoEmail' => 'Contacto Email',
-			'fechaConstitucion_dt' => 'Fecha Constitucion Dt',
-			'fechaTransformacion_dt' => 'Fecha Transformacion Dt',
-			'rfc' => 'Rfc',
-			'donativoDeducible' => 'Donativo Deducible',
-			'donativoConvenio' => 'Donativo Convenio',
-			'cluni' => 'Cluni',
-			'ambito_did' => 'Ambito',
-			'areageografica_did' => 'Areageografica',
+			'mision' => 'Misión',
+			'vision' => 'Visión',
+			'domicioDireccion' => 'Dirección',
+			'domicilioCP' => 'C.P.',
+			'domicilioMunicipio_aid' => 'Municipio',
+			'contactoTelefono' => 'Teléfono',
+			'contactoFax' => 'Fax',
+			'contactoEmail' => 'Email',
+			'fechaConstitucion_dt' => 'Fecha Constitución',
+			'fechaTransformacion_dt' => 'Fecha Transformación',
+			'rfc' => 'R.F.C',
+			'donativoDeducible' => 'Deducible',
+			'donativoConvenio' => 'Convenio',
+			'cluni' => 'Clave Cluni',
+			'ambito_did' => 'Ámbito',
+			'areageografica_did' => 'Área Geográfica',
 			'horasPromedio_trabajador' => 'Horas Promedio Trabajador',
 			'estatus_did' => 'Estatus',
 		);
@@ -229,4 +229,11 @@ class Institucion extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	function esEditable($dt_inicio, $dt_revisar, $dt_final){ 
+	  if(strtotime($dt_revisar) > strtotime($dt_inicio) && strtotime($dt_revisar) < strtotime($dt_final)) { 
+	    return true; 
+	  } 
+	  return false; 
+	} 
 }

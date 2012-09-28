@@ -52,7 +52,7 @@ class EjercicioFiscal extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nombre, fechaInicio_dt, estatus_did', 'required'),
+			array('nombre, fechaFin_dt, fechaInicio_dt, estatus_did', 'required'),
 			array('estatus_did', 'numerical', 'integerOnly'=>true),
 			array('nombre', 'length', 'max'=>145),
 			array('fechaFin_dt', 'safe'),
@@ -140,8 +140,8 @@ class EjercicioFiscal extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'nombre' => 'Nombre',
-			'fechaInicio_dt' => 'Fecha Inicio Dt',
-			'fechaFin_dt' => 'Fecha Fin Dt',
+			'fechaInicio_dt' => 'Fecha Inicio',
+			'fechaFin_dt' => 'Fecha Final',
 			'estatus_did' => 'Estatus',
 		);
 	}

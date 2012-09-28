@@ -25,7 +25,24 @@
 		<?php echo $form->labelEx($model,'fechaInicio_dt'); ?>
 		<div class="input">
 			
-			<?php echo $form->textField($model,'fechaInicio_dt'); ?>
+			<?php 
+			$this->widget('zii.widgets.jui.CJuiDatePicker',
+			array(
+				'model'=>$model,
+				'attribute'=>'fechaInicio_dt',
+				'language'=>'es',
+				'options'=> array(
+					'dateFormat'=>'yy-mm-dd', 
+					'altFormat'=>'dd-mm-yy', 
+					'changeMonth'=>'true', 
+					'changeYear'=>'true', 
+					'yearRange'=>'1990:'.date('Y'), 
+					'showOn'=>'both',
+					'buttonText'=>'<i class="icon-calendar"></i>'
+				),
+			));
+			
+			?>	
 			<?php echo $form->error($model,'fechaInicio_dt'); ?>
 		</div>
 	</div>
@@ -34,7 +51,24 @@
 		<?php echo $form->labelEx($model,'fechaFin_dt'); ?>
 		<div class="input">
 			
-			<?php echo $form->textField($model,'fechaFin_dt'); ?>
+			<?php 
+			$this->widget('zii.widgets.jui.CJuiDatePicker',
+			array(
+				'model'=>$model,
+				'attribute'=>'fechaFin_dt',
+				'language'=>'es',
+				'options'=> array(
+					'dateFormat'=>'yy-mm-dd', 
+					'altFormat'=>'dd-mm-yy', 
+					'changeMonth'=>'true', 
+					'changeYear'=>'true', 
+					'yearRange'=>'1990:'.date('Y'), 
+					'showOn'=>'both',
+					'buttonText'=>'<i class="icon-calendar"></i>'
+				),
+			));
+			
+			?>	
 			<?php echo $form->error($model,'fechaFin_dt'); ?>
 		</div>
 	</div>

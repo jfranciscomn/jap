@@ -8,8 +8,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Listar '.EjercicioFiscal::classNameLabel(), 'url'=>array('index')),
-	array('label'=>'Crear '.EjercicioFiscal::classNameLabel(), 'url'=>array('create')),
+	array('label'=>'Listar Ejercicio Fiscal', 'url'=>array('index')),
+	array('label'=>'Crear Ejercicio Fiscal', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

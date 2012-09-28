@@ -125,16 +125,16 @@ class GastoOperativo extends CActiveRecord
 			'sueldos' => 'Sueldos',
 			'honorarios' => 'Honorarios',
 			'combustibles' => 'Combustibles',
-			'luzTelefono' => 'Luz Telefono',
-			'papeleria' => 'Papeleria',
+			'luzTelefono' => 'Luz, Teléfono',
+			'papeleria' => 'Papelería',
 			'renta' => 'Renta',
-			'impuestosDerechos' => 'Impuestos Derechos',
+			'impuestosDerechos' => 'Impuestos y Derechos',
 			'otros' => 'Otros',
-			'institucion_aid' => 'Institucion',
+			'institucion_aid' => 'Institución',
 			'ejercicioFiscal_did' => 'Ejercicio Fiscal',
 			'estatus_did' => 'Estatus',
 			'editable' => 'Editable',
-			'ultimaModificacion_dt' => 'Ultima Modificacion Dt',
+			'ultimaModificacion_dt' => 'Última Modificación',
 		);
 	}
 

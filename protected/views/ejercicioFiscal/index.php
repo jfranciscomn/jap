@@ -7,8 +7,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Crear '.EjercicioFiscal::classNameLabel(), 'url'=>array('create')),
-	array('label'=>'Administrar '.EjercicioFiscal::classNameLabel(), 'url'=>array('admin')),
+	array('label'=>'Crear Ejercicio Fiscal', 'url'=>array('create')),
+	array('label'=>'Administrar Ejercicio Fiscal', 'url'=>array('admin')),
 );
 ?>
 

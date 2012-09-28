@@ -1,9 +1,9 @@
 <?php
-$this->pageCaption='Contact Us';
+$this->pageCaption='Contáctame';
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
-$this->pageDescription='Send us feedback';
+$this->pageDescription='';
 $this->breadcrumbs=array(
-	'Contact',
+	'Contáctame',
 );
 ?>
 
@@ -16,7 +16,7 @@ $this->breadcrumbs=array(
 <?php else: ?>
 
 <p>
-If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
+Si tienes alguna pregunta, por favor llena el siguiente formulario. Gracias.
 </p>
 
 <div class="form">
@@ -30,7 +30,7 @@ If you have business inquiries or other questions, please fill out the following
 	),
 )); ?>
 	<?php $this->beginWidget('BAlert',array()); ?>
-	<p>Fields with <span class="required">*</span> are required.</p>
+	<p>Campos con <span class="required">*</span> son requeridos.</p>
 	<?php $this->endWidget(); ?>
 
 	<?php echo $form->errorSummary($model); ?>
@@ -75,15 +75,15 @@ If you have business inquiries or other questions, please fill out the following
 			<?php echo $form->textField($model,'verifyCode'); ?>
 			<?php echo $form->error($model,'verifyCode'); ?>
 			<p class="help-block">
-				Please enter the letters as they are shown in the image above.
-				<br/>Letters are not case-sensitive.
+				Por favor introduzca la letras que se muestran en la imagen de arriba.
+				<br/>Las letras no distinguen entre mayúsculas y minúsculas.
 			</p>
 		</div>
 	</div>
 	<?php endif; ?>
 
 	<div class="form-actions">
-		<?php echo BHtml::submitButton('Submit'); ?>
+		<?php echo BHtml::submitButton('Enviar Sugerencia'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

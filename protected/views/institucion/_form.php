@@ -73,7 +73,7 @@
 			<?php echo  ''; ?> <?php $this->widget('ext.custom.widgets.EJuiAutoCompleteFkField', array(
 						'model'=>$model, 
 						'attribute'=>'domicilioMunicipio_aid', 
-						'sourceUrl'=>Yii::app()->createUrl('domicilioMunicipio/autocompletesearch'), 
+						'sourceUrl'=>Yii::app()->createUrl('municipio/autocompletesearch'), 
 						'showFKField'=>false,
 						'relName'=>'domicilioMunicipio', // the relation name defined above
 						'displayAttr'=>'nombre',  // attribute or pseudo-attribute to display
@@ -117,8 +117,25 @@
 		<?php echo $form->labelEx($model,'fechaConstitucion_dt'); ?>
 		<div class="input">
 			
-			<?php echo $form->textField($model,'fechaConstitucion_dt'); ?>
-			<?php echo $form->error($model,'fechaConstitucion_dt'); ?>
+			<?php 
+			$this->widget('zii.widgets.jui.CJuiDatePicker',
+			array(
+				'model'=>$model,
+				'attribute'=>'fechaConstitucion_dt',
+				'language'=>'es',
+				'options'=> array(
+					'dateFormat'=>'yy-mm-dd', 
+					'altFormat'=>'dd-mm-yy', 
+					'changeMonth'=>'true', 
+					'changeYear'=>'true', 
+					'yearRange'=>'1990:'.date('Y'), 
+					'showOn'=>'both',
+					'buttonText'=>'<i class="icon-calendar"></i>'
+				),
+			));
+			
+			?>	
+			<?php echo $form->error($model,'fecha_f'); ?>
 		</div>
 	</div>
 
@@ -126,8 +143,25 @@
 		<?php echo $form->labelEx($model,'fechaTransformacion_dt'); ?>
 		<div class="input">
 			
-			<?php echo $form->textField($model,'fechaTransformacion_dt'); ?>
-			<?php echo $form->error($model,'fechaTransformacion_dt'); ?>
+			<?php 
+			$this->widget('zii.widgets.jui.CJuiDatePicker',
+			array(
+				'model'=>$model,
+				'attribute'=>'fechaTransformacion_dt',
+				'language'=>'es',
+				'options'=> array(
+					'dateFormat'=>'yy-mm-dd', 
+					'altFormat'=>'dd-mm-yy', 
+					'changeMonth'=>'true', 
+					'changeYear'=>'true', 
+					'yearRange'=>'1990:'.date('Y'), 
+					'showOn'=>'both',
+					'buttonText'=>'<i class="icon-calendar"></i>'
+				),
+			));
+			
+			?>	
+			<?php echo $form->error($model,'fecha_f'); ?>
 		</div>
 	</div>
 
@@ -141,19 +175,19 @@
 	</div>
 
 	<div class="<?php echo $form->fieldClass($model, 'donativoDeducible'); ?>">
-		<?php echo $form->labelEx($model,'donativoDeducible'); ?>
+		<?php echo $form->labelEx($model,''); ?>
 		<div class="input">
 			
-			<?php echo $form->textField($model,'donativoDeducible'); ?>
+			<?php echo $form->checkBox($model, 'donativoDeducible', array('size'=>1,'maxlength'=>1, 'value'=>'1', 'uncheckValue'=>'0')); ?>
 			<?php echo $form->error($model,'donativoDeducible'); ?>
 		</div>
 	</div>
-
+	
 	<div class="<?php echo $form->fieldClass($model, 'donativoConvenio'); ?>">
-		<?php echo $form->labelEx($model,'donativoConvenio'); ?>
+		<?php echo $form->labelEx($model,''); ?>
 		<div class="input">
 			
-			<?php echo $form->textField($model,'donativoConvenio'); ?>
+			<?php echo $form->checkBox($model, 'donativoConvenio', array('size'=>1,'maxlength'=>1, 'value'=>'1', 'uncheckValue'=>'0')); ?>
 			<?php echo $form->error($model,'donativoConvenio'); ?>
 		</div>
 	</div>

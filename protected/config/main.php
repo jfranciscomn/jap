@@ -22,7 +22,7 @@ return array(
 		'ext.bootstrap-theme.widgets.*',
 	    	'ext.bootstrap-theme.helpers.*',
 	    	'ext.bootstrap-theme.behaviors.*',
-	),
+	),	
 
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
@@ -62,16 +62,16 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		
+				
 		/*'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),*/
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=72.32.40.46;dbname=517226_sistemajap',
+			'connectionString' => 'mysql:host=72.3.204.215;dbname=517226_sistemajap',
 			'emulatePrepare' => true,
-			'username' => '517226_sistemaja',
+			'username' => '517226_sistemaj',
 			'password' => 'Zamarripa83',
 			'charset' => 'utf8',
 		),
@@ -107,6 +107,6 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'rzamarripa@uss.mx',
 	),
 );

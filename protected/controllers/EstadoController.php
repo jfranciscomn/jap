@@ -63,7 +63,7 @@ class EstadoController extends Controller
 	public function actionCreate()
 	{
 		$model=new Estado;
-
+		
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -71,7 +71,9 @@ class EstadoController extends Controller
 		{
 			$model->attributes=$_POST['Estado'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			{				
+				$this->redirect(array('view','id'=>$model->id));	
+			}
 		}
 
 		$this->render('create',array(

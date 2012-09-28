@@ -120,17 +120,17 @@ class IngresoPorDonativo extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'personaFisica' => 'Persona Fisica',
+			'personaFisica' => 'Persona Física',
 			'personaMoral' => 'Persona Moral',
 			'fundacionesNacionales' => 'Fundaciones Nacionales',
 			'fundacionesExtrajeras' => 'Fundaciones Extrajeras',
 			'fondosGubernamentales' => 'Fondos Gubernamentales',
 			'especie' => 'Especie',
-			'institucion_aid' => 'Institucion',
+			'institucion_aid' => 'Institución',
 			'ejercicioFiscal_did' => 'Ejercicio Fiscal',
 			'estatus_did' => 'Estatus',
 			'editable' => 'Editable',
-			'ultimaModificacion_dt' => 'Ultima Modificacion Dt',
+			'ultimaModificacion_dt' => 'Última Modificación',
 		);
 	}
 

@@ -1,15 +1,15 @@
 <?php
-$this->pageCaption='Administrar '.Institucion::classNameLabel();
+$this->pageCaption='Administrar Institución';
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
-$this->pageDescription='Administrar '.Institucion::classNameLabel();
+$this->pageDescription='';
 $this->breadcrumbs=array(
-	Institucion::classNameLabel()=>array('index'),
+	'Institución'=>array('index'),
 	'Administrar',
 );
 
 $this->menu=array(
-	array('label'=>'Listar '.Institucion::classNameLabel(), 'url'=>array('index')),
-	array('label'=>'Crear '.Institucion::classNameLabel(), 'url'=>array('create')),
+	array('label'=>'Listar Institución', 'url'=>array('index')),
+	array('label'=>'Crear Institución', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -28,7 +28,7 @@ $('.search-form form').submit(function(){
 
 
 
-<?php echo CHtml::link('Busqueda Avanzada','#',array('class'=>'search-button')); ?>
+<?php echo CHtml::link('Búsqueda Avanzada','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,

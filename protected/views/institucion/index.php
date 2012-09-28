@@ -1,14 +1,14 @@
 <?php
-$this->pageCaption=Institucion::classNameLabel();
+$this->pageCaption='Lista de Instituciones';
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
-$this->pageDescription='Listar '. Institucion::classNameLabel() ;
+$this->pageDescription='';
 $this->breadcrumbs=array(
 	Institucion::classNameLabel(),
 );
 
 $this->menu=array(
-	array('label'=>'Crear '.Institucion::classNameLabel(), 'url'=>array('create')),
-	array('label'=>'Administrar '.Institucion::classNameLabel(), 'url'=>array('admin')),
+	array('label'=>'Crear Institución', 'url'=>array('create')),
+	array('label'=>'Filtrar Institución', 'url'=>array('admin')),
 );
 ?>
 

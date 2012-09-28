@@ -1,15 +1,15 @@
 <?php
-$this->pageCaption='Crear '. TipoUsuario::classNameLabel();
+$this->pageCaption='Crear Tipo Usuario';
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
-$this->pageDescription='Crear nuevo '.TipoUsuario::classNameLabel();
+$this->pageDescription='';
 $this->breadcrumbs=array(
 	TipoUsuario::classNameLabel()=>array('index'),
 	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'Listar '.TipoUsuario::classNameLabel(), 'url'=>array('index')),
-	array('label'=>'Administrar '.TipoUsuario::classNameLabel(), 'url'=>array('admin')),
+	array('label'=>'Listar Tipo Usuario', 'url'=>array('index')),
+	array('label'=>'Administrar Tipo Usuario', 'url'=>array('admin')),
 );
 ?>
 

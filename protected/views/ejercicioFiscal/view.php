@@ -8,11 +8,11 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Listar '.EjercicioFiscal::classNameLabel(), 'url'=>array('index')),
-	array('label'=>'Crear '. EjercicioFiscal::classNameLabel(), 'url'=>array('create')),
-	array('label'=>'Actualizar '. EjercicioFiscal::classNameLabel(), 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Eliminar '. EjercicioFiscal::classNameLabel(), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estas seguro que quieres eliminar este elemento?')),
-	array('label'=>'Administrar '.EjercicioFiscal::classNameLabel(), 'url'=>array('admin')),
+	array('label'=>'Listar Ejercicio Fiscal', 'url'=>array('index')),
+	array('label'=>'Crear Ejercicio Fiscal', 'url'=>array('create')),
+	array('label'=>'Actualizar Ejercicio Fiscal', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Eliminar Ejercicio Fiscal', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estas seguro que quieres eliminar este elemento?')),
+	array('label'=>'Administrar Ejercicio Fiscal', 'url'=>array('admin')),
 );
 ?>
 

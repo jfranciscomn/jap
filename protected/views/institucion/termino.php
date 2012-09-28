@@ -2,8 +2,9 @@
 	if(isset($_GET['que']))
 	{
 		$tipo = $_GET['que'];
+		$accion = $_GET['ac'];
 	}
-	$this->pageCaption='Gracias por terminar su presupuesto de ' . $tipo;
+	$this->pageCaption='Gracias por ' .  $accion . ' su presupuesto de ' . $tipo;
 	$this->pageTitle='Gracias Presupuesto';
 	$this->pageDescription='';
 	$this->breadcrumbs=array(
@@ -11,6 +12,5 @@
 		'Crear',
 	);
 	
-	$this->menu=array(
-		array('label'=>'Volver ', 'url'=>array('site/index')),
-	);
+	
+	echo CHtml::button('Volver', array('submit' => array('institucion/acciones'),'class'=>'btn btn-primary'));

@@ -113,7 +113,7 @@ class TipoUsuario extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'nombre' => 'Nombre',
-			'descripcion' => 'Descripcion',
+			'descripcion' => 'Descripción',
 			'estatus_did' => 'Estatus',
 		);
 	}

@@ -1,15 +1,15 @@
 <?php
-$this->pageCaption='Crear '. Institucion::classNameLabel();
+$this->pageCaption='Crear Instución de Asistencia Privada';
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
-$this->pageDescription='Crear nuevo '.Institucion::classNameLabel();
+$this->pageDescription='';
 $this->breadcrumbs=array(
 	Institucion::classNameLabel()=>array('index'),
 	'Crear',
 );
 
 $this->menu=array(
-	array('label'=>'Listar '.Institucion::classNameLabel(), 'url'=>array('index')),
-	array('label'=>'Administrar '.Institucion::classNameLabel(), 'url'=>array('admin')),
+	array('label'=>'Listar Institución', 'url'=>array('index')),
+	array('label'=>'Filtrar Institución', 'url'=>array('admin')),
 );
 ?>
 

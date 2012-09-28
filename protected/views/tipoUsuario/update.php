@@ -9,10 +9,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Listar '.TipoUsuario::classNameLabel(), 'url'=>array('index')),
-	array('label'=>'Crear '. TipoUsuario::classNameLabel(), 'url'=>array('create')),
-	array('label'=>'Ver '. TipoUsuario::classNameLabel(), 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Administrar '. TipoUsuario::classNameLabel(), 'url'=>array('admin')),
+	array('label'=>'Listar Tipo Usuario', 'url'=>array('index')),
+	array('label'=>'Crear Tipo Usuario', 'url'=>array('create')),
+	array('label'=>'Ver Tipo Usuario', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Administrar Tipo Usuario', 'url'=>array('admin')),
 );
 ?>
 

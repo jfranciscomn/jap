@@ -8,7 +8,7 @@
 <?php endif; ?>
 		<div class="row">
 			<div class="span12">
-				<h3>Menú<?php //echo CHtml::encode($this->sidebarCaption); ?></h3>
+				<h3><?php //echo CHtml::encode($this->sidebarCaption); ?></h3>
 				<?php
 					$this->widget('zii.widgets.CMenu', array(
 						'items'=>$this->menu,

@@ -13,14 +13,13 @@
  * @property double $impuestosDerechos
  * @property double $otros
  * @property integer $institucion_aid
- * @property integer $ejercicioFisca_did
+ * @property integer $ejercicioFiscal_did
  * @property integer $estatus_did
  * @property integer $editable
  * @property string $ultimaModificacion_dt
  *
  * The followings are the available model relations:
  * @property Estatus $estatus
- * @property EjercicioFiscal $ejercicioFisca
  * @property Institucion $institucion
  */
 class GastoDeAdministracion extends CActiveRecord
@@ -56,12 +55,12 @@ class GastoDeAdministracion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('institucion_aid, ejercicioFisca_did, estatus_did, editable, ultimaModificacion_dt', 'required'),
-			array('institucion_aid, ejercicioFisca_did, estatus_did, editable', 'numerical', 'integerOnly'=>true),
+			array('institucion_aid, ejercicioFiscal_did, estatus_did, editable, ultimaModificacion_dt', 'required'),
+			array('institucion_aid, ejercicioFiscal_did, estatus_did, editable', 'numerical', 'integerOnly'=>true),
 			array('sueldos, honorarios, combustibles, luzTelefono, papeleria, impuestosDerechos, otros', 'numerical'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, sueldos, honorarios, combustibles, luzTelefono, papeleria, impuestosDerechos, otros, institucion_aid, ejercicioFisca_did, estatus_did, editable, ultimaModificacion_dt', 'safe', 'on'=>'search'),
+			array('id, sueldos, honorarios, combustibles, luzTelefono, papeleria, impuestosDerechos, otros, institucion_aid, ejercicioFiscal_did, estatus_did, editable, ultimaModificacion_dt', 'safe', 'on'=>'search'),
 		);
 	}
 	
@@ -71,7 +70,7 @@ class GastoDeAdministracion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ejercicioFisca_did, estatus_did','dropdownfield'),
+			array('ejercicioFiscal_did, estatus_did','dropdownfield'),
 			array('institucion_aid','autocompletefield'),
 			
 		);
@@ -86,7 +85,6 @@ class GastoDeAdministracion extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'estatus' => array(self::BELONGS_TO, 'Estatus', 'estatus_did'),
-			'ejercicioFisca' => array(self::BELONGS_TO, 'EjercicioFiscal', 'ejercicioFisca_did'),
 			'institucion' => array(self::BELONGS_TO, 'Institucion', 'institucion_aid'),
 		);
 	}
@@ -124,15 +122,15 @@ class GastoDeAdministracion extends CActiveRecord
 			'sueldos' => 'Sueldos',
 			'honorarios' => 'Honorarios',
 			'combustibles' => 'Combustibles',
-			'luzTelefono' => 'Luz Telefono',
-			'papeleria' => 'Papeleria',
-			'impuestosDerechos' => 'Impuestos Derechos',
+			'luzTelefono' => 'Luz, Teléfono',
+			'papeleria' => 'Papelería',
+			'impuestosDerechos' => 'Impuestos y Derechos',
 			'otros' => 'Otros',
-			'institucion_aid' => 'Institucion',
-			'ejercicioFisca_did' => 'Ejercicio Fisca',
+			'institucion_aid' => 'Institución',
+			'ejercicioFiscal_did' => 'Ejercicio Fiscal',
 			'estatus_did' => 'Estatus',
 			'editable' => 'Editable',
-			'ultimaModificacion_dt' => 'Ultima Modificacion Dt',
+			'ultimaModificacion_dt' => 'Última Modificación',
 		);
 	}
 
@@ -156,7 +154,7 @@ class GastoDeAdministracion extends CActiveRecord
 		$criteria->compare('impuestosDerechos',$this->impuestosDerechos);
 		$criteria->compare('otros',$this->otros);
 		$criteria->compare('institucion_aid',$this->institucion_aid);
-		$criteria->compare('ejercicioFisca_did',$this->ejercicioFisca_did);
+		$criteria->compare('ejercicioFiscal_did',$this->ejercicioFiscal_did);
 		$criteria->compare('estatus_did',$this->estatus_did);
 		$criteria->compare('editable',$this->editable);
 		$criteria->compare('ultimaModificacion_dt',$this->ultimaModificacion_dt,true);

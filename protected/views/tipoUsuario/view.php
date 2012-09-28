@@ -8,11 +8,11 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Listar '.TipoUsuario::classNameLabel(), 'url'=>array('index')),
-	array('label'=>'Crear '. TipoUsuario::classNameLabel(), 'url'=>array('create')),
-	array('label'=>'Actualizar '. TipoUsuario::classNameLabel(), 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Eliminar '. TipoUsuario::classNameLabel(), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estas seguro que quieres eliminar este elemento?')),
-	array('label'=>'Administrar '.TipoUsuario::classNameLabel(), 'url'=>array('admin')),
+	array('label'=>'Listar Tipo Usuario', 'url'=>array('index')),
+	array('label'=>'Crear Tipo Usuario', 'url'=>array('create')),
+	array('label'=>'Actualizar Tipo Usuario', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Eliminar Tipo Usuario', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estas seguro que quieres eliminar este elemento?')),
+	array('label'=>'Administrar Tipo Usuario', 'url'=>array('admin')),
 );
 ?>
 
