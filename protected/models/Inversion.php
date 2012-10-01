@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'Inversion':
  * @property string $id
  * @property double $terrenos
- * @property double $muebles
+ * @property double $inmuebles
  * @property double $vehiculosServicio
  * @property double $vehiculosAdministrativos
  * @property double $otros
@@ -56,10 +56,10 @@ class Inversion extends CActiveRecord
 		return array(
 			array('institucion_aid, estatus_did, ejercicio_did, editable, ultimaModificacion_dt', 'required'),
 			array('institucion_aid, estatus_did, ejercicio_did, editable', 'numerical', 'integerOnly'=>true),
-			array('terrenos, muebles, vehiculosServicio, vehiculosAdministrativos, otros', 'numerical'),
+			array('terrenos, inmuebles, equipoOficina, vehiculosServicio, vehiculosAdministrativos, otros', 'numerical'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, terrenos, muebles, vehiculosServicio, vehiculosAdministrativos, otros, institucion_aid, estatus_did, ejercicio_did, editable, ultimaModificacion_dt', 'safe', 'on'=>'search'),
+			array('id, terrenos, inmuebles, equipoOficina, vehiculosServicio, vehiculosAdministrativos, otros, institucion_aid, estatus_did, ejercicio_did, editable, ultimaModificacion_dt', 'safe', 'on'=>'search'),
 		);
 	}
 	
@@ -120,7 +120,8 @@ class Inversion extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'terrenos' => 'Terrenos',
-			'muebles' => 'Muebles',
+			'inmuebles' => 'Inmuebles',
+			'equipoOficina' => 'Equipo De Oficina',
 			'vehiculosServicio' => 'Vehículos Servicio',
 			'vehiculosAdministrativos' => 'Vehículos Administrativos',
 			'otros' => 'Otros',
@@ -145,7 +146,8 @@ class Inversion extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('terrenos',$this->terrenos);
-		$criteria->compare('muebles',$this->muebles);
+		$criteria->compare('inmuebles',$this->inmuebles);
+		$criteria->compare('equipoOficina',$this->equipoOficina);
 		$criteria->compare('vehiculosServicio',$this->vehiculosServicio);
 		$criteria->compare('vehiculosAdministrativos',$this->vehiculosAdministrativos);
 		$criteria->compare('otros',$this->otros);

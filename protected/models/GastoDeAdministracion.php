@@ -122,7 +122,7 @@ class GastoDeAdministracion extends CActiveRecord
 			'sueldos' => 'Sueldos',
 			'honorarios' => 'Honorarios',
 			'combustibles' => 'Combustibles',
-			'luzTelefono' => 'Luz, Teléfono',
+			'luzTelefono' => 'Luz, Agua y Teléfono',
 			'papeleria' => 'Papelería',
 			'impuestosDerechos' => 'Impuestos y Derechos',
 			'otros' => 'Otros',

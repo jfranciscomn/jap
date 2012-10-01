@@ -175,19 +175,29 @@
 	</div>
 
 	<div class="<?php echo $form->fieldClass($model, 'donativoDeducible'); ?>">
-		<?php echo $form->labelEx($model,''); ?>
+		<?php echo $form->labelEx($model,'donativoDeducible'); ?>
 		<div class="input">
-			
-			<?php echo $form->checkBox($model, 'donativoDeducible', array('size'=>1,'maxlength'=>1, 'value'=>'1', 'uncheckValue'=>'0')); ?>
+			<?php 
+	              echo CHtml::dropDownList('donativoDeducible','', array(2=>'No Sé',1=>'Si',0=>'No'),
+						array(
+						'ajax' => array(
+						'type'=>'POST', //request type
+						'url'=>CController::createUrl('institucion/actualizadeducibles'), //url to call.
+						//Style: CController::createUrl('currentController/methodToCall')
+						'update'=>'#donativoConvenio', //selector to update
+						//'data'=>'js:javascript statement' 
+						//leave out the data key to pass all form values through
+						))); 
+	        ?>
 			<?php echo $form->error($model,'donativoDeducible'); ?>
 		</div>
 	</div>
 	
 	<div class="<?php echo $form->fieldClass($model, 'donativoConvenio'); ?>">
-		<?php echo $form->labelEx($model,''); ?>
+		<?php echo $form->labelEx($model,'donativoConvenio'); ?>
 		<div class="input">
 			
-			<?php echo $form->checkBox($model, 'donativoConvenio', array('size'=>1,'maxlength'=>1, 'value'=>'1', 'uncheckValue'=>'0')); ?>
+			<?php echo CHtml::dropDownList('donativoConvenio','', array()); ?>
 			<?php echo $form->error($model,'donativoConvenio'); ?>
 		</div>
 	</div>

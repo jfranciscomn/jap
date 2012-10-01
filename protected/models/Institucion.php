@@ -25,6 +25,7 @@
  * @property integer $areageografica_did
  * @property integer $horasPromedio_trabajador
  * @property integer $estatus_did
+ * @property integer $usuario_did
  *
  * The followings are the available model relations:
  * @property GastoDeAdministracion[] $gastoDeAdministracions
@@ -33,10 +34,12 @@
  * @property IngresoPorDonativo[] $ingresoPorDonativos
  * @property IngresoPorEvento[] $ingresoPorEventos
  * @property IngresoPorVenta[] $ingresoPorVentas
- * @property Municipio $domicilioMunicipio
+ * @property Usuario $usuario
  * @property Ambito $ambito
  * @property AreaGeografica $areageografica
  * @property Estatus $estatus
+ * @property Municipio $domicilioMunicipio
+ * @property Inversion[] $inversions
  * @property Usuario[] $usuarios
  */
 class Institucion extends CActiveRecord
@@ -72,15 +75,15 @@ class Institucion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('contactoTelefono, contactoEmail, nombre, siglas, domicioDireccion, domicilioCP, domicilioMunicipio_aid, fechaConstitucion_dt, rfc, donativoDeducible, donativoConvenio, ambito_did, areageografica_did, estatus_did', 'required'),
-			array('domicilioMunicipio_aid, donativoDeducible, donativoConvenio, ambito_did, areageografica_did, horasPromedio_trabajador, estatus_did', 'numerical', 'integerOnly'=>true),
+			array('nombre','required'),
+			array('domicilioMunicipio_aid, donativoDeducible, donativoConvenio, ambito_did, areageografica_did, horasPromedio_trabajador, estatus_did, usuario_did', 'numerical', 'integerOnly'=>true),
 			array('nombre, domicioDireccion, contactoEmail', 'length', 'max'=>145),
 			array('siglas, domicilioCP, contactoTelefono, contactoFax, cluni', 'length', 'max'=>45),
 			array('rfc', 'length', 'max'=>13),
 			array('mision, vision, fechaTransformacion_dt', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, nombre, siglas, mision, vision, domicioDireccion, domicilioCP, domicilioMunicipio_aid, contactoTelefono, contactoFax, contactoEmail, fechaConstitucion_dt, fechaTransformacion_dt, rfc, donativoDeducible, donativoConvenio, cluni, ambito_did, areageografica_did, horasPromedio_trabajador, estatus_did', 'safe', 'on'=>'search'),
+			array('id, nombre, siglas, mision, vision, domicioDireccion, domicilioCP, domicilioMunicipio_aid, contactoTelefono, contactoFax, contactoEmail, fechaConstitucion_dt, fechaTransformacion_dt, rfc, donativoDeducible, donativoConvenio, cluni, ambito_did, areageografica_did, horasPromedio_trabajador, estatus_did, usuario_did', 'safe', 'on'=>'search'),
 		);
 	}
 	
@@ -90,7 +93,7 @@ class Institucion extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ambito_did, areageografica_did, estatus_did','dropdownfield'),
+			array('ambito_did, areageografica_did, estatus_did, usuario_did','dropdownfield'),
 			array('domicilioMunicipio_aid','autocompletefield'),
 			
 		);
@@ -110,10 +113,12 @@ class Institucion extends CActiveRecord
 			'ingresoPorDonativos' => array(self::HAS_MANY, 'IngresoPorDonativo', 'institucion_aid'),
 			'ingresoPorEventos' => array(self::HAS_MANY, 'IngresoPorEvento', 'institucion_aid'),
 			'ingresoPorVentas' => array(self::HAS_MANY, 'IngresoPorVenta', 'institucion_aid'),
-			'domicilioMunicipio' => array(self::BELONGS_TO, 'Municipio', 'domicilioMunicipio_aid'),
+			'usuario' => array(self::BELONGS_TO, 'Usuario', 'usuario_did'),
 			'ambito' => array(self::BELONGS_TO, 'Ambito', 'ambito_did'),
 			'areageografica' => array(self::BELONGS_TO, 'AreaGeografica', 'areageografica_did'),
 			'estatus' => array(self::BELONGS_TO, 'Estatus', 'estatus_did'),
+			'domicilioMunicipio' => array(self::BELONGS_TO, 'Municipio', 'domicilioMunicipio_aid'),
+			'inversions' => array(self::HAS_MANY, 'Inversion', 'institucion_aid'),
 			'usuarios' => array(self::HAS_MANY, 'Usuario', 'institucion_aid'),
 		);
 	}
@@ -156,6 +161,9 @@ class Institucion extends CActiveRecord
 		foreach ($this->$ingresoPorVentas as $ingresoPorVentasn )
 			$ingresoPorVentasn->deleteCascade();
 
+		foreach ($this->$inversions as $inversionsn )
+			$inversionsn->deleteCascade();
+
 		foreach ($this->$usuarios as $usuariosn )
 			$usuariosn->deleteCascade();
 
@@ -186,9 +194,10 @@ class Institucion extends CActiveRecord
 			'donativoConvenio' => 'Convenio',
 			'cluni' => 'Clave Cluni',
 			'ambito_did' => 'Ámbito',
-			'areageografica_did' => 'Área Geográfica',
+			'areageografica_did' => 'Área Geográfica que Atiende',
 			'horasPromedio_trabajador' => 'Horas Promedio Trabajador',
 			'estatus_did' => 'Estatus',
+			'usuario_did' => 'Usuario',
 		);
 	}
 
@@ -224,6 +233,7 @@ class Institucion extends CActiveRecord
 		$criteria->compare('areageografica_did',$this->areageografica_did);
 		$criteria->compare('horasPromedio_trabajador',$this->horasPromedio_trabajador);
 		$criteria->compare('estatus_did',$this->estatus_did);
+		$criteria->compare('usuario_did',$this->usuario_did);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

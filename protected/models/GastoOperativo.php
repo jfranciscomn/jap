@@ -125,7 +125,7 @@ class GastoOperativo extends CActiveRecord
 			'sueldos' => 'Sueldos',
 			'honorarios' => 'Honorarios',
 			'combustibles' => 'Combustibles',
-			'luzTelefono' => 'Luz, Teléfono',
+			'luzTelefono' => 'Luz, Agua y Teléfono',
 			'papeleria' => 'Papelería',
 			'renta' => 'Renta',
 			'impuestosDerechos' => 'Impuestos y Derechos',

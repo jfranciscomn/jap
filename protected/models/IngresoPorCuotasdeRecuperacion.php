@@ -54,7 +54,7 @@ class IngresoPorCuotasdeRecuperacion extends CActiveRecord
 		return array(
 			array('institucion_aid, ejercicioFiscal_did, estatus_did, editable, ultimaModificacion_dt', 'required'),
 			array('institucion_aid, ejercicioFiscal_did, estatus_did, editable', 'numerical', 'integerOnly'=>true),
-			array('consultas, despensas, otro', 'numerical'),
+			array('consultas', 'numerical'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, consultas, despensas, otro, institucion_aid, ejercicioFiscal_did, estatus_did, editable, ultimaModificacion_dt', 'safe', 'on'=>'search'),
@@ -117,9 +117,7 @@ class IngresoPorCuotasdeRecuperacion extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'consultas' => 'Consultas',
-			'despensas' => 'Despensas',
-			'otro' => 'Otro',
+			'consultas' => 'Importe',			
 			'institucion_aid' => 'Institucion',
 			'ejercicioFiscal_did' => 'Ejercicio Fiscal',
 			'estatus_did' => 'Estatus',

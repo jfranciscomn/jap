@@ -118,8 +118,8 @@ class Usuario extends CActiveRecord
 			'id' => 'ID',
 			'usuario' => 'Usuario',
 			'password' => 'Password',
-			'tipousuario_did' => 'Tipousuario',
-			'institucion_aid' => 'Institucion',
+			'tipousuario_did' => 'Tipo Usuario',
+			'institucion_aid' => 'Institución',
 			'estatus_did' => 'Estatus',
 		);
 	}

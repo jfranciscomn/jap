@@ -6,23 +6,24 @@ $this->breadcrumbs=array(
 	Institucion::classNameLabel()=>array('index'),
 	$model->id,
 );
+$usuarioActual = Usuario::model()->find('usuario=:x',array(':x'=>Yii::app()->user->name));
+if($usuarioActual->tipousuario->nombre == 'Administrador')
+{
+	$this->menu=array(
+		array('label'=>'Listar Institución', 'url'=>array('index')),
+		array('label'=>'Crear Institución', 'url'=>array('create')),
+		array('label'=>'Actualizar Institución', 'url'=>array('update', 'id'=>$model->id)),
+		array('label'=>'Eliminar Institución', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estas seguro que quieres eliminar este elemento?')),
+		array('label'=>'Filtrar Institución', 'url'=>array('admin')),
+	);
+}
+else
+{
+	$this->menu=array(
+		array('label'=>'Inicio', 'url'=>array('site/index'))
+	);
 
-$this->menu=array(
-	array('label'=>'Listar Institución', 'url'=>array('index')),
-	array('label'=>'Crear Institución', 'url'=>array('create')),
-	array('label'=>'Actualizar Institución', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Eliminar Institución', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'¿Estas seguro que quieres eliminar este elemento?')),
-	array('label'=>'Filtrar Institución', 'url'=>array('admin')),
-);
-$to = array(
-					'rzamarripa@freenternet.com',		
-				);
-				//mensaje
-				$body = 'Me es grato informarles que hemos recibido 50 visitantes más a nuestra red. Tenemos un total de ';
-				//Mandar el correo.
-				Yii::app()->email->send('Freenternet Robot',$to,'Ya tenemos ',$body);
-				echo $body;
-
+}
 ?>
 
 <?php $this->widget('zii.widgets.CDetailView', array(

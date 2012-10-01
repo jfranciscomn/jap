@@ -13,7 +13,9 @@ return array(
 	
 
 	// preloading 'log' component
-	'preload'=>array('log'),
+	'preload'=>array(
+		'log',
+	),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -48,6 +50,7 @@ return array(
 
 	// application components
 	'components'=>array(
+		
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -75,7 +78,15 @@ return array(
 			'password' => 'Zamarripa83',
 			'charset' => 'utf8',
 		),
-		
+		/*
+		'db'=>array(
+			'connectionString' => 'mysql:host=127.0.0.1;dbname=jap',
+			'emulatePrepare' => true,
+			'username' => 'root',
+			'password' => '',
+			'charset' => 'utf8',
+		),
+		*/
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
@@ -99,10 +110,8 @@ return array(
 			        ),
 			),
 		),
-	),
-	
+	),	
 	'theme'=>'bootstrap',
-
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(

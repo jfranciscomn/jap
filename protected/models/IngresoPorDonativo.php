@@ -57,7 +57,7 @@ class IngresoPorDonativo extends CActiveRecord
 		return array(
 			array('institucion_aid, ejercicioFiscal_did, estatus_did, editable, ultimaModificacion_dt', 'required'),
 			array('institucion_aid, ejercicioFiscal_did, estatus_did, editable', 'numerical', 'integerOnly'=>true),
-			array('personaFisica, personaMoral, fundacionesNacionales, fundacionesExtrajeras, fondosGubernamentales, especie', 'numerical'),
+			array('personaFisica, personaMoral, fundacionesNacionales, fundacionesExtrajeras, fondosGubernamentalesMunicipal, fondosGubernamentalesEstatal, fondosGubernamentalesFederal, especie', 'numerical'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, personaFisica, personaMoral, fundacionesNacionales, fundacionesExtrajeras, fondosGubernamentales, especie, institucion_aid, ejercicioFiscal_did, estatus_did, editable, ultimaModificacion_dt', 'safe', 'on'=>'search'),
@@ -124,7 +124,9 @@ class IngresoPorDonativo extends CActiveRecord
 			'personaMoral' => 'Persona Moral',
 			'fundacionesNacionales' => 'Fundaciones Nacionales',
 			'fundacionesExtrajeras' => 'Fundaciones Extrajeras',
-			'fondosGubernamentales' => 'Fondos Gubernamentales',
+			'fondosGubernamentalesMunicipal' => 'Fondos Gubernamentales Municipal',
+			'fondosGubernamentalesEstatal' => 'Fondos Gubernamentales Estatal',
+			'fondosGubernamentalesFederal' => 'Fondos Gubernamentales Federal',
 			'especie' => 'Especie',
 			'institucion_aid' => 'Institución',
 			'ejercicioFiscal_did' => 'Ejercicio Fiscal',

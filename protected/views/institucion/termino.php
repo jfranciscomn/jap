@@ -4,8 +4,8 @@
 		$tipo = $_GET['que'];
 		$accion = $_GET['ac'];
 	}
-	$this->pageCaption='Gracias por ' .  $accion . ' su presupuesto de ' . $tipo;
-	$this->pageTitle='Gracias Presupuesto';
+	$this->pageCaption='Gracias por cumplir';
+	$this->pageTitle='Haz cumplido';
 	$this->pageDescription='';
 	$this->breadcrumbs=array(
 		Institucion::classNameLabel()=>array('index'),

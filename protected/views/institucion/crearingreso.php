@@ -1,5 +1,5 @@
 <?php
-$this->pageCaption='Crear Presupuesto Ingreso';
+$this->pageCaption='Informe de Actividades';
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
 $this->pageDescription='';
 $this->breadcrumbs=array(
@@ -16,4 +16,7 @@ $this->breadcrumbs=array(
 'modelDonativo'=>$modelDonativo,
 'modelIngresoPorCuotasDeRecuperacion'=>$modelIngresoPorCuotasDeRecuperacion,
 'modelIngresoPorEvento'=>$modelIngresoPorEvento,
+'modelGastoDeAdministracion'=>$modelGastoDeAdministracion,
+'modelGastoOperativo'=>$modelGastoOperativo,
+'modelInversion'=>$modelInversion,
 )); ?>

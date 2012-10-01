@@ -8,7 +8,6 @@
  * @property double $colectas
  * @property double $eventos
  * @property double $rifas
- * @property double $desayunos
  * @property double $conferencias
  * @property integer $institucion_aid
  * @property integer $ejercicioFiscal_did
@@ -56,10 +55,10 @@ class IngresoPorEvento extends CActiveRecord
 		return array(
 			array('institucion_aid, ejercicioFiscal_did, estatus_did, editable, ultimaModificacion_dt', 'required'),
 			array('institucion_aid, ejercicioFiscal_did, estatus_did, editable', 'numerical', 'integerOnly'=>true),
-			array('colectas, eventos, rifas, desayunos, conferencias', 'numerical'),
+			array('colectas, eventos, rifas, conferencias', 'numerical'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, colectas, eventos, rifas, desayunos, conferencias, institucion_aid, ejercicioFiscal_did, estatus_did, editable, ultimaModificacion_dt', 'safe', 'on'=>'search'),
+			array('id, colectas, eventos, rifas, conferencias, institucion_aid, ejercicioFiscal_did, estatus_did, editable, ultimaModificacion_dt', 'safe', 'on'=>'search'),
 		);
 	}
 	
@@ -122,7 +121,6 @@ class IngresoPorEvento extends CActiveRecord
 			'colectas' => 'Colectas',
 			'eventos' => 'Eventos',
 			'rifas' => 'Rifas',
-			'desayunos' => 'Desayunos',
 			'conferencias' => 'Conferencias',
 			'institucion_aid' => 'Institucion',
 			'ejercicioFiscal_did' => 'Ejercicio Fiscal',
@@ -147,7 +145,6 @@ class IngresoPorEvento extends CActiveRecord
 		$criteria->compare('colectas',$this->colectas);
 		$criteria->compare('eventos',$this->eventos);
 		$criteria->compare('rifas',$this->rifas);
-		$criteria->compare('desayunos',$this->desayunos);
 		$criteria->compare('conferencias',$this->conferencias);
 		$criteria->compare('institucion_aid',$this->institucion_aid);
 		$criteria->compare('ejercicioFiscal_did',$this->ejercicioFiscal_did);

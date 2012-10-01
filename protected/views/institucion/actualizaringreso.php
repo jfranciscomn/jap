@@ -1,5 +1,5 @@
 <?php
-$this->pageCaption='Actualizar Presupuesto Ingreso';
+$this->pageCaption='Presupuesto';
 $this->pageTitle=Yii::app()->name . ' - ' . $this->pageCaption;
 $this->pageDescription='';
 $this->breadcrumbs=array(
@@ -16,4 +16,7 @@ $this->breadcrumbs=array(
 'modelDonativo'=>$modelDonativo,
 'modelIngresoPorCuotasDeRecuperacion'=>$modelIngresoPorCuotasDeRecuperacion,
 'modelIngresoPorEvento'=>$modelIngresoPorEvento,
+'modelGastoDeAdministracion'=>$modelGastoDeAdministracion,
+'modelGastoOperativo'=>$modelGastoOperativo,	
+'modelInversion'=>$modelInversion,
 )); ?>

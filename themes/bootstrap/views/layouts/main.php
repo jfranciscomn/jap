@@ -72,6 +72,7 @@
 										array('label'=>'Ámbito', 'url'=>array('/ambito/index')),
 										array('label'=>'Área Geográfica', 'url'=>array('/areageografica/index')),
 										array('label'=>'Ejercicio Fiscal', 'url'=>array('/ejerciciofiscal/index')),
+										array('label'=>'Configuración', 'url'=>array('/configuracion/index')),
 										array('label'=>'Estado', 'url'=>array('/estado/index')),
 										array('label'=>'Estatus', 'url'=>array('/estatus/index')),										
 										array('label'=>'Institución', 'url'=>array('/institucion/index')),
